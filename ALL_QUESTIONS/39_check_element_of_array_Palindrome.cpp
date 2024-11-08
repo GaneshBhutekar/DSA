@@ -1,35 +1,75 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
-using namespace std;
+    #include<iostream>
+    #include<vector>
+    using namespace std;
 
-bool PalinArray(vector<int> &arr){
-    // first every time move in the array and check everry element, that is it palindrome or not if not then return false.
-    for(int i :arr){
-        // check that is this number is palindrome or not
-        int reverse = 0;
-        int num= i;
-        while(num!=0){
-            int digit = num%10;
-            reverse = (10*reverse) + digit;
-            num = num/10; 11111
+
+
+
+
+    void leftShift(string &s,int &moves,int pos,int dest){
+        char element = s[pos];
+        while(pos!=dest){
+            s[pos] = s[pos-1];
+            pos--;
+            moves++;
         }
-        // now check that revrse and num is equal or not
-        if (i-reverse != 0){
-            return false;
+        // add the element there 
+        s[pos] = element;
+    }
+
+    void rightShift(string &s,int &moves,int pos,int dest){
+        char element = s[pos];
+        while(pos!=dest){
+            s[pos] = s[pos+1];
+            pos++;
+            moves++;
         }
+        s[pos] = element;
     }
+    int minMovesToMakePalindrome(string &s){
+        int moves = 0;
+        int n = s.size();
+        int left = 0;
+        int right = n-1;
+        // check if boith are same then move closer , if not then find the element 
+        while(left <= right){
+            // check if both are same or not
+            if (s[left] != s[right]){
+                // cout<<s[left]<<" and "<<s[right]<<endl;
+                // find the correct element 
+                // left one should be equal to right
+                // right should be equal to left
+                int L = left+1;
+                int R = right-1;
+                while(true){
+                    if (s[L] == s[right]){
+                        // cout<<s[L]<<" and " << L<<" and " << left<<endl;
 
-    return true;
-}
-int main(){
-    vector<int> arr = {111, 222222122, 333, 444, 555};
-    if (PalinArray(arr)){
-        cout<<"yes all are palindrome"<<endl;
+                        // we got similer in left side first
+                        // create the finction who shift the element to the LEFT where it belongs
+                        leftShift(s,moves,L,left);
+                        break;
+                    }
+                    else if (s[R] == s[left]){
+                        // we got similar in right side first.
+                        // create the function who shift the element to the RIGHT where it belongs
+                        rightShift(s,moves,R,right);
+                        break;
+                    }
+                    R--;
+                    L++;
+                }
+            }
+            left++;
+            right--;
+        }
+        return moves;
+    }
+    int main(){
+        string s = "eqvvhtcsaaqtqesvvqch";
+
+        int ans = minMovesToMakePalindrome(s);
+        cout<<"string "<<s<<endl;
+        cout<<ans<<endl;
 
     }
-    else{
-        cout<<"no there is some which is not palindrome"<<endl;
-    }
-
-}
