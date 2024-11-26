@@ -6,8 +6,7 @@ using namespace std;
 
 /*
         DESCRIPTION:
-        Given an n x n matrix mat[n][n] of integers, find the maximum value of mat(c, d) – mat(a, b) 
-        over all choices of indexes such that both c > a and d > b.
+        Given an n x n matrix mat[n][n] of integers, find the maximum value of mat(c, d) – mat(a, b) over all choices of indexes such that both c > a and d > b.
 */
 
 int findMaxValue1(vector<vector<int>> &mat,int N){ // Time complexity O(N4)
