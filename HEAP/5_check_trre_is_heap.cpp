@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this ->data = data;
         this->left = nullptr;
@@ -16,15 +16,15 @@ class Node{
 };
 
 // now insert the element.
-void printit(Node* root){
+void printit(ListNode* root){
     if(root == nullptr){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(nullptr);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == nullptr){
             cout<<endl;
@@ -45,7 +45,7 @@ void printit(Node* root){
 
 }
 
-Node* insert(Node* root){
+ListNode* insert(ListNode* root){
     int data;
     // cout<<"enter the data"<<endl;
     cin>>data;
@@ -69,11 +69,11 @@ Node* insert(Node* root){
 
 // now we have the binary tree now check whether it is max heap or not
 // This one is more gppd than recursion because we don't need to count the total no. of element.
-bool level_wise_check(Node* root){
+bool level_wise_check(ListNode* root){
     // here we don't need total number of  elements 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
-    Node* demo = root;
+    ListNode* demo = root;
     while(demo != nullptr){
         // when you encountered first null 
         q.pop();
@@ -98,7 +98,7 @@ bool level_wise_check(Node* root){
 
 
 
-bool CBT(Node* root,int n,int i){
+bool CBT(ListNode* root,int n,int i){
     // i is index right now and n is total number of node
 
     if(root == nullptr){
@@ -117,7 +117,7 @@ bool CBT(Node* root,int n,int i){
 }
 
 
-int count_nodes(Node* root){
+int count_nodes(ListNode* root){
     if (root == nullptr){
         return 0;
     }
@@ -130,7 +130,7 @@ int count_nodes(Node* root){
 }
 
 
-bool maxHeap(Node* root){
+bool maxHeap(ListNode* root){
     if (root == nullptr){
         return true;
     }
@@ -147,7 +147,7 @@ bool maxHeap(Node* root){
     }
     return left & right & current;
 }
-bool check_heap(Node* root){
+bool check_heap(ListNode* root){
     /*
     There are 2 ways to check the complete binary tree or not
         1. recursion
@@ -171,7 +171,7 @@ int main(){
     // correct heaap 100 80 45 10  -1 -1 -1 75 -1 -1 90 85 -1 -1 60 -1 -1
     // 100 50 30 15 -1 -1 -1 45 -1 -1 40 -1 -1
     // 100 80 60 -1 -1 40 -1 -1 90 95 -1 -1 -1 
-    Node* root = nullptr;
+    ListNode* root = nullptr;
     // insert the datra
     root = insert(root);
     printit(root);

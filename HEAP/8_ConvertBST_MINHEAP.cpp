@@ -18,8 +18,8 @@
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this->data = data;
         this->right = nullptr;
@@ -29,12 +29,12 @@ class Node{
 };
 
 
-void printTree(Node* root){
-    std::queue<Node*> q;
+void printTree(ListNode* root){
+    std::queue<ListNode*> q;
     q.push(root);
     q.push(nullptr);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if(demo == nullptr){
             std::cout<<std::endl;
@@ -56,7 +56,7 @@ void printTree(Node* root){
     }
 }
 
-Node* CreateTree(Node* root){
+ListNode* CreateTree(ListNode* root){
     // take the data
     int data;
     std::cout<<"enter the data"<<std::endl;
@@ -72,7 +72,7 @@ Node* CreateTree(Node* root){
     return root;
 }
 
-void InorderTraversal(Node* root,std::vector<int> &sorted){ //O(N)
+void InorderTraversal(ListNode* root,std::vector<int> &sorted){ //O(N)
     if (root== nullptr){
         return;
     }
@@ -88,7 +88,7 @@ void InorderTraversal(Node* root,std::vector<int> &sorted){ //O(N)
 }
 
 
-void replace_element(Node* &root,std::vector<int> sorted,int &index){ // O(N)
+void replace_element(ListNode* &root,std::vector<int> sorted,int &index){ // O(N)
     if (root==nullptr){
         return;
     }
@@ -100,7 +100,7 @@ void replace_element(Node* &root,std::vector<int> sorted,int &index){ // O(N)
     // then go right
     replace_element(root->right,sorted,index);
 }
-Node* ConvertBstToMinHeap(Node* root){
+ListNode* ConvertBstToMinHeap(ListNode* root){
     // we know that our node should be smaller than left and left should be smaller than right
     // this order is similar to the preorder so if i have sorted list then first element goes to node 
     // then second element goes to left and the third element goes to right And sorted means inorder 
@@ -118,7 +118,7 @@ Node* ConvertBstToMinHeap(Node* root){
 }
 
 int main(){
-    Node* root = nullptr;
+    ListNode* root = nullptr;
     root = CreateTree(root);
     // 16 8 6 1 -1 -1 7 -1 -1 11 -1 -1 20 19 -1 -1 25 -1 -1
     printTree(root);
