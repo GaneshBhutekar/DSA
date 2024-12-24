@@ -6,8 +6,8 @@ using namespace std;
 class node{
     public:
     int data;
-    node* left;
-    node* right;
+    ListNode* left;
+    ListNode* right;
     node(int data){
         this->data = data;
         this->right = NULL;
@@ -18,7 +18,7 @@ class node{
 
 };
 
-node* buildtree(node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"insert the data "<<endl;
     cin>>data;
@@ -39,12 +39,12 @@ node* buildtree(node* &root){
 }
 
 
-void print_tree(node* root){
-    queue<node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -65,7 +65,7 @@ void print_tree(node* root){
     }
 }
 
-void solve(node*root , int &height,int cnt){
+void solve(ListNode*root , int &height,int cnt){
 
     if (root == NULL){
         return;
@@ -86,7 +86,7 @@ void solve(node*root , int &height,int cnt){
 }
 
 
-int solve2(node* root){
+int solve2(ListNode* root){
     if (root== NULL){
         return 0;
     }
@@ -104,7 +104,7 @@ int solve2(node* root){
 }
 
 
-int find_depth(node* root ){
+int find_depth(ListNode* root ){
     int max_height = 0;
     int cnt =1;
 
@@ -113,7 +113,7 @@ int find_depth(node* root ){
 
 }
 int main(){
-    node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
 

@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         right = NULL;
         this->data = data;
@@ -18,15 +18,15 @@ class Node{
 
 
 
-void print(Node* root){
+void print(ListNode* root){
     if (root == NULL){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* temp = q.front();
+        ListNode* temp = q.front();
         q.pop();
 
         if (temp == NULL){
@@ -47,7 +47,7 @@ void print(Node* root){
     }
 }
 
-Node* construct(vector<int> &preorder,vector<int> &inorder,int start,int end,int &index){
+ListNode* construct(vector<int> &preorder,vector<int> &inorder,int start,int end,int &index){
     if (start>end){
         return NULL;
     }
@@ -60,7 +60,7 @@ Node* construct(vector<int> &preorder,vector<int> &inorder,int start,int end,int
     }
 
     // we got the value it means from left of this value will be smaller element and in the right there will be larger 
-    Node* root = new Node(element);
+    ListNode* root = new Node(element);
 
     // move to the left space
     index++;
@@ -72,18 +72,18 @@ Node* construct(vector<int> &preorder,vector<int> &inorder,int start,int end,int
 
 }
 
-Node* BSt(vector<int> preorder){
+ListNode* BSt(vector<int> preorder){
     vector<int> inorder = preorder;
     sort(inorder.begin(),inorder.end());
     // now with the help of inorder
     int n = inorder.size();
     int index = 0;
-    Node* root = construct(preorder,inorder,0,n-1,index);
+    ListNode* root = construct(preorder,inorder,0,n-1,index);
     return root;
 }
 int main(){
     vector<int> preorder  = {20,10,5,15,13,35,30,42,100};
-    Node* root = BSt(preorder);
+    ListNode* root = BSt(preorder);
     print(root);
 
 }

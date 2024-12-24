@@ -8,8 +8,8 @@ using namespace std;
 class Node  {
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this ->data = data;
         left = NULL;
@@ -18,7 +18,7 @@ class Node  {
     }
 };
 
-Node* createtree(Node* root){
+ListNode* createtree(ListNode* root){
     int data;
     cout<<"enter the data"<<endl;
 
@@ -39,14 +39,14 @@ Node* createtree(Node* root){
 }
 
 
-void printtree(Node* root){
+void printtree(ListNode* root){
     if (root == NULL) return;
-    queue<Node*> q;
+    queue<ListNode*> q;
 
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
 
         q.pop();
         if (demo == NULL){
@@ -76,7 +76,7 @@ void printtree(Node* root){
 // where inorder is use to check that node left have any node not if yes then we move more if not then just go back
 // we use preorder to traverse because that's how we create the tree
 
-Node* solve(int &index,int pre[],int in[],int pre_start,int pre_end,int n,map<int,int> mp){
+ListNode* solve(int &index,int pre[],int in[],int pre_start,int pre_end,int n,map<int,int> mp){
 
 
     if (index >= n || pre_start > pre_end){
@@ -86,7 +86,7 @@ Node* solve(int &index,int pre[],int in[],int pre_start,int pre_end,int n,map<in
     // data nikalo
     int element = pre[index++];
     // jo pre ka data hain use node banao
-    Node* root = new Node(element);
+    ListNode* root = new Node(element);
 
     // find the position of this element in the pre array
     // int position = mp[element];
@@ -100,7 +100,7 @@ Node* solve(int &index,int pre[],int in[],int pre_start,int pre_end,int n,map<in
 }
 
 
-Node* buildtree(int in[], int pre[],int n){
+ListNode* buildtree(int in[], int pre[],int n){
     map<int,int> mp;
     for(int i =0;i<n;i++){
         mp[in[i]] = i;
@@ -110,7 +110,7 @@ Node* buildtree(int in[], int pre[],int n){
 }
 
 int main(){
-    // Node* root = NULL;
+    // ListNode* root = NULL;
 
     // root = createtree(root);
     
@@ -119,6 +119,6 @@ int main(){
     int pre[] = {0,1,3,4,2,5};
     int n = 6;
 
-    Node* root = buildtree(in,pre,6);
+    ListNode* root = buildtree(in,pre,6);
     printtree(root);
 }

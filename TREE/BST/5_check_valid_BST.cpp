@@ -7,8 +7,8 @@
     class Node{
         public:
         int data;
-        Node* right;
-        Node* left;
+        ListNode* right;
+        ListNode* left;
         Node(int data){
             this->data = data;
             this->right = NULL;
@@ -18,7 +18,7 @@
 
 
     // input in the binary search tree
-    Node* insertBST(Node* &root,int data){
+    ListNode* insertBST(ListNode* &root,int data){
         if(root == NULL){
             // we came where to put the data.
             root = new Node(data);
@@ -38,15 +38,15 @@
     }
 
 
-    void print_tree(Node* root){
+    void print_tree(ListNode* root){
         if (root ==NULL){
             return;
         }
-        queue<Node*> q;
+        queue<ListNode*> q;
         q.push(root);
         q.push(NULL);
         while(!q.empty()){
-            Node* demo = q.front();
+            ListNode* demo = q.front();
             q.pop();
             if (demo == NULL){
                 cout<<endl;
@@ -67,7 +67,7 @@
 
     }
 
-void insertingdata(Node* &root){
+void insertingdata(ListNode* &root){
     int data;
     cout<<"enter the data (-1 for exit)"<<endl;
     cin>>data;
@@ -78,7 +78,7 @@ void insertingdata(Node* &root){
 }
 
 
-bool solve(Node* root,pair<int,int> range){
+bool solve(ListNode* root,pair<int,int> range){
 
     if (root == NULL){
         return true;
@@ -95,7 +95,7 @@ bool solve(Node* root,pair<int,int> range){
 
 }
 // now check that it is valid or not
-bool checkBST(Node* root){
+bool checkBST(ListNode* root){
     pair<int,int> range = {INT_MIN,INT_MAX};
     return solve(root,range);
     
@@ -103,7 +103,7 @@ bool checkBST(Node* root){
 
 
 // get normal tree
-Node* insertBT(Node* &root,vector<int> data,int &index){
+ListNode* insertBT(ListNode* &root,vector<int> data,int &index){
     int num = data[index];
     index++;
     if (num == -1){
@@ -121,7 +121,7 @@ Node* insertBT(Node* &root,vector<int> data,int &index){
 
 
 //check by inorder way
-bool inorderWay(Node* root,int &prev){
+bool inorderWay(ListNode* root,int &prev){
     if (root == NULL){
 
         return true;
@@ -142,7 +142,7 @@ bool inorderWay(Node* root,int &prev){
 }
 
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     insertingdata(root);
     print_tree(root);
 
@@ -156,7 +156,7 @@ int main(){
 
     vector<int> data = {10,5,3,-1,-1,4,-1,-1,16,11,-1,-1,17,-1,19,-1,-1};
     // 10,5,3,-1,-1,4,-1,-1,16,11,-1,-1,17,-1,19,20,-1,-1,-1
-    Node* root1= NULL;
+    ListNode* root1= NULL;
     int index = 0;
     insertBT(root1,data,index);
     print_tree(root1);

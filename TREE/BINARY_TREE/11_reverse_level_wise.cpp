@@ -8,8 +8,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this ->data = data;
         this ->right = NULL;
@@ -18,7 +18,7 @@ class Node{
 };
 
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data "<<endl;
     cin>> data;
@@ -57,13 +57,13 @@ void printing(deque<int> &dq, bool right_direction){
 
 
 
-void zig_zag_traverse(Node* root){
+void zig_zag_traverse(ListNode* root){
     if (root == NULL){
         return;
     }
 
     // for track 
-    queue<Node*> q;
+    queue<ListNode*> q;
 
     // for print in reverse and non reverse.
     deque<int> dq;
@@ -77,7 +77,7 @@ void zig_zag_traverse(Node* root){
     printing(dq,right_direction);
 
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             printing(dq,right_direction);
@@ -104,13 +104,13 @@ void zig_zag_traverse(Node* root){
 
     
 }
-void print(Node* root){
-    queue<Node*> q;
+void print(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        Node* temp  = q.front();
+        ListNode* temp  = q.front();
         q.pop();
 
         if (temp == NULL){
@@ -133,7 +133,7 @@ void print(Node* root){
     }    
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print(root);
     zig_zag_traverse(root);

@@ -22,7 +22,7 @@ void insertatHead(Node * &head,int data){
     head=temp;
 
 }
-void insertatTail(Node*&tail,int data){
+void insertatTail(ListNode*&tail,int data){
     Node * temp=new Node(data);
     tail->next=temp;
     tail=temp;
@@ -38,8 +38,8 @@ void print(Node * head){
     cout<<endl;
 
 }
-void count(Node*head,vector<int> &value){
-    Node*temp=head;
+void count(ListNode*head,vector<int> &value){
+    ListNode*temp=head;
     while(temp!=NULL){
         if (temp->data == 0){
             value[0]=value[0]+1;
@@ -54,10 +54,10 @@ void count(Node*head,vector<int> &value){
         temp=temp->next;
     }
 }
-void approach_one(Node*head){
+void approach_one(ListNode*head){
     vector<int> value(3,0);
     count(head,value);
-    Node*temp=head;
+    ListNode*temp=head;
     while(temp!=NULL){
         if (value[0]>0){
             temp->data = 0; 
@@ -75,18 +75,18 @@ void approach_one(Node*head){
     }
 
 }
-Node* approached_two(Node*head){
-    Node*zeros=new Node(0);
-    Node*head_zeros=zeros;
-    Node*tail_zero=zeros ;
-    Node*ones=new Node(0);
-    Node*head_ones=ones;
-    Node*tail_ones=ones;
-    Node*two = new Node(0);
-    Node*head_two=two;
-    Node*tail_twos=two;
+ListNode* approached_two(ListNode*head){
+    ListNode*zeros=new Node(0);
+    ListNode*head_zeros=zeros;
+    ListNode*tail_zero=zeros ;
+    ListNode*ones=new Node(0);
+    ListNode*head_ones=ones;
+    ListNode*tail_ones=ones;
+    ListNode*two = new Node(0);
+    ListNode*head_two=two;
+    ListNode*tail_twos=two;
 
-    Node*temp=head;
+    ListNode*temp=head;
     while(temp!=NULL){
         if (temp->data == 0){
             insertatTail(tail_zero,0);
@@ -107,7 +107,7 @@ Node* approached_two(Node*head){
     tail_zero->next=head_ones->next;
     tail_ones->next=head_two->next;
     }
-    Node*todelete=head_zeros;
+    ListNode*todelete=head_zeros;
     head_zeros=head_zeros->next;
     todelete->next=NULL;
     delete todelete;
@@ -118,9 +118,9 @@ Node* approached_two(Node*head){
 
 }
 int main(){
-    Node* temp=new Node(1);
-    Node*head=temp;
-    Node*tail=temp;
+    ListNode* temp=new Node(1);
+    ListNode*head=temp;
+    ListNode*tail=temp;
 
     insertatTail(tail,1);
     insertatTail(tail,0);
@@ -134,7 +134,7 @@ int main(){
     cout<<"we are here"<<endl;
     print(head);
 
-    Node*new_head=approached_two(head);
+    ListNode*new_head=approached_two(head);
     cout<<"answer is "<<endl;
     print(new_head);
     

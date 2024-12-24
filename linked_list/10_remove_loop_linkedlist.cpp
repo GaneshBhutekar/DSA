@@ -15,12 +15,12 @@ class Node{
 };
 
 void insertionatHead(Node * &head,int data){
-    Node* temp= new Node(data);
+    ListNode* temp= new Node(data);
     temp->next=head;
     head=temp;
 }
 void insertionatTail(Node * &tail,int data){
-    Node* temp = new Node(data);
+    ListNode* temp = new Node(data);
     tail->next= temp;
     tail=temp;
 
@@ -37,8 +37,8 @@ void print(Node * &head){
 
 
 bool check_loop(Node *head){
-    Node*temp=head;
-    map<Node*,bool> visited;
+    ListNode*temp=head;
+    map<ListNode*,bool> visited;
     while(temp!=NULL){
         if (visited[temp]==true){
             cout<<"Cycle is present at the element is (beginnining) "<<temp->data<<endl;
@@ -54,8 +54,8 @@ bool floyd_cycle_detection(Node * head){
     if (head==NULL){
         return false;
     }
-    Node*slow=head;
-    Node*fast = head;
+    ListNode*slow=head;
+    ListNode*fast = head;
     while(fast!=NULL && fast->next != NULL){
         slow=slow->next;
         fast=fast->next->next;
@@ -71,12 +71,12 @@ bool floyd_cycle_detection(Node * head){
 
 }
 
-Node * find_cycle_initial(Node*head){
+Node * find_cycle_initial(ListNode*head){
     if (head==NULL){
         return head;
     }
-    Node*fast=head;
-    Node*slow=head;
+    ListNode*fast=head;
+    ListNode*slow=head;
     while(true){
         fast=fast->next->next;
         slow=slow->next;
@@ -99,7 +99,7 @@ Node * find_cycle_initial(Node*head){
 
 }
 
-void remove_loop(Node* head){
+void remove_loop(ListNode* head){
     Node * intersection = find_cycle_initial(head);
     Node * temp=intersection;
     while(temp->next != intersection){

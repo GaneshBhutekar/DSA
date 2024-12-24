@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this ->data = data;
         left = NULL;
@@ -16,7 +16,7 @@ class Node{
 };
 
 
-Node* buildtree(Node* root){
+ListNode* buildtree(ListNode* root){
 
     int data;
     cout<<"enter the element"<<endl;
@@ -39,7 +39,7 @@ Node* buildtree(Node* root){
 
 }
 
-void sort_merge(Node* root,vector<int> &r){
+void sort_merge(ListNode* root,vector<int> &r){
     if (root == NULL){
         return;
     }
@@ -86,7 +86,7 @@ vector<int> solve(vector<int> r1,vector<int> r2){
 
     return ans;
 }
-vector<int> merge(Node* root1,Node* root2){
+vector<int> merge(ListNode* root1,ListNode* root2){
     vector<int> r1;
     vector<int> r2;
 
@@ -102,14 +102,14 @@ vector<int> merge(Node* root1,Node* root2){
 
 }
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
 
     if (root == NULL) return;
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -133,8 +133,8 @@ void print_tree(Node* root){
 
 
 int main(){
-    Node* root1 = NULL;
-    Node* root2 = NULL;
+    ListNode* root1 = NULL;
+    ListNode* root2 = NULL;
     
     cout<<"enter for tree 1"<<endl;
     // 5 3 2 -1 -1 4 -1 -1 6 -1 -1 

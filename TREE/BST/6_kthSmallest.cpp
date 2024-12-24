@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         this->right = NULL;
@@ -18,7 +18,7 @@ class Node{
 
 
 // input in the binary search tree
-Node* insertBST(Node* &root,int data){
+ListNode* insertBST(ListNode* &root,int data){
     if(root == NULL){
         // we came where to put the data.
         root = new Node(data);
@@ -38,15 +38,15 @@ Node* insertBST(Node* &root,int data){
 }
 
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root ==NULL){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -68,7 +68,7 @@ void print_tree(Node* root){
 }
 
 
-int solve(Node* root,int &k){
+int solve(ListNode* root,int &k){
     if (root == NULL){
         return -1;
     }
@@ -92,13 +92,13 @@ int solve(Node* root,int &k){
     }
 }
 
-int kthsmallest(Node* root,int k){
+int kthsmallest(ListNode* root,int k){
     int ans = solve(root,k);
     return ans;
 }
 
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     // 5 4 8 2 6 10 3 7
     cout<<"insert the data"<<endl;
     int data;

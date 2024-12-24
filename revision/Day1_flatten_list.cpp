@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* next;
-    Node* down;
+    ListNode* next;
+    ListNode* down;
     Node(int data){
         this -> data = data;
         this ->next = NULL;
@@ -22,28 +22,28 @@ class Node{
     }
 };
 
-void insertHead(Node* &head,int element){
-    Node* temp = new Node(element);
+void insertHead(ListNode* &head,int element){
+    ListNode* temp = new Node(element);
     temp->next = head;
     head = temp;
 }
 
-void insertTail(Node* &tail,int element){
-    Node* temp = new Node(element);
+void insertTail(ListNode* &tail,int element){
+    ListNode* temp = new Node(element);
     tail->next = temp;
     tail=temp;
 }
 
-void insertDown(Node* &top,int element){
-    Node* temp = new Node(element);
+void insertDown(ListNode* &top,int element){
+    ListNode* temp = new Node(element);
     top->down = temp;
     top= temp;
 }
 
 
-Node*  merge_two_list(Node*temp1,Node*temp2){
+ListNode*  merge_two_list(ListNode*temp1,ListNode*temp2){
 
-    Node* ori_head = new Node(-1); // dummy node.
+    ListNode* ori_head = new Node(-1); // dummy node.
     Node * tail = ori_head;
 
     while(temp1!=NULL && temp2 != NULL){
@@ -81,7 +81,7 @@ Node*  merge_two_list(Node*temp1,Node*temp2){
 
 }
 
-Node* merge_down(Node* head){
+ListNode* merge_down(ListNode* head){
     // doiing these through recurssion
     if (head->next == NULL){
         return head;
@@ -91,16 +91,16 @@ Node* merge_down(Node* head){
 
     return merge_two_list(head,head->next); // for last case head one is last and head -> next will be null;
 }
-void print_next(Node* head){
-    Node* temp = head;
+void print_next(ListNode* head){
+    ListNode* temp = head;
     while(temp != NULL){
         cout<<temp->data <<" ";
         temp = temp->next;
     }
     cout<<endl;
 }
-void print_down(Node* head){
-    Node* temp = head;
+void print_down(ListNode* head){
+    ListNode* temp = head;
     while(temp!= NULL){
         cout<<temp->data<<" ";
         temp = temp -> down;
@@ -110,30 +110,30 @@ void print_down(Node* head){
 
 
 int main(){
-    Node* newnode= new Node(2);
-    Node* head = newnode;
-    Node* tail = newnode;
-    Node* down1 = newnode;
+    ListNode* newnode= new Node(2);
+    ListNode* head = newnode;
+    ListNode* tail = newnode;
+    ListNode* down1 = newnode;
     insertDown(down1,16);
 
     // now next one
 
     insertTail(tail,3);
-    Node* down2= tail;
+    ListNode* down2= tail;
     insertDown(down2,8);
 
     insertTail(tail,1);
-    Node* down3 = tail;
+    ListNode* down3 = tail;
     insertDown(down3,6);
     insertDown(down3,7);
 
     insertTail(tail,8);
-    Node*down4 = tail;
+    ListNode*down4 = tail;
 
     print_next(head);
 
     // merge them downwords
 
-    Node* new_head = merge_down(head);
+    ListNode* new_head = merge_down(head);
     print_down(new_head);
 }

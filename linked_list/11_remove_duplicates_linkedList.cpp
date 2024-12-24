@@ -18,12 +18,12 @@ class Node{
 };
 
 void insertionatHead(Node * &head,int data){
-    Node* temp= new Node(data);
+    ListNode* temp= new Node(data);
     temp->next=head;
     head=temp;
 }
 void insertionatTail(Node * &tail,int data){
-    Node* temp = new Node(data);
+    ListNode* temp = new Node(data);
     tail->next= temp;
     tail=temp;
 
@@ -45,7 +45,7 @@ void remove_duplicates(Node * head){ // myapproach
     Node * temp= head;
     while(temp->next!=NULL){
         if (temp->next->data == temp->data){ 
-            Node* todelete=temp->next;
+            ListNode* todelete=temp->next;
             temp -> next = temp->next->next;
             todelete->next=NULL;
             delete todelete;
@@ -60,17 +60,17 @@ void remove_duplicates(Node * head){ // myapproach
 
 }
 
-void remove_unsortedlist_duplicates(Node*head){
+void remove_unsortedlist_duplicates(ListNode*head){
     if (head==NULL){
         return;
     }
-    Node*curr=head;
-    Node*forward = head;
+    ListNode*curr=head;
+    ListNode*forward = head;
     while(curr->next != NULL){
 
     while(forward->next != NULL){
         if (curr->data == forward->next->data){
-            Node*temp=forward->next;
+            ListNode*temp=forward->next;
             forward->next=forward->next->next;
             temp->next=NULL;
             delete temp;
@@ -85,8 +85,8 @@ void remove_unsortedlist_duplicates(Node*head){
     }
 }
 int main(){
-    Node* node = new Node(10);
-    Node* head=node;
+    ListNode* node = new Node(10);
+    ListNode* head=node;
     Node * tail = node;
 
     insertionatTail(tail,20);
@@ -110,8 +110,8 @@ int main(){
 
     cout<<"For Unsorted Linked list removing duplicate value is "<<endl;
     Node * node1=new Node(1);
-    Node*head1=node1;
-    Node*tail1=node1;
+    ListNode*head1=node1;
+    ListNode*tail1=node1;
     insertionatTail(tail1,6);
     insertionatTail(tail1,1);
     insertionatTail(tail1,4);

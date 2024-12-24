@@ -9,8 +9,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this -> data = data;
         this -> left = NULL;
@@ -21,7 +21,7 @@ class Node{
 
 
 // create the tree
-Node* createtree(Node* root){
+ListNode* createtree(ListNode* root){
     cout<<"enter the data "<<endl;
     int data;
     cin>>data;
@@ -41,12 +41,12 @@ Node* createtree(Node* root){
 
 
 // print the tree
-void printtree(Node* root){
-    queue<Node*> q;
+void printtree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -69,7 +69,7 @@ void printtree(Node* root){
 }
 
 
-void DoublyLL(Node* root , Node* &head){
+void DoublyLL(ListNode* root , ListNode* &head){
     if (root == NULL){
         return;
     }
@@ -88,7 +88,7 @@ void DoublyLL(Node* root , Node* &head){
     DoublyLL(root->left,head);
 }
 
-void printLL(Node* head){
+void printLL(ListNode* head){
     while(head != NULL){
         cout<<head->data<<" ";
         head = head->right;
@@ -97,12 +97,12 @@ void printLL(Node* head){
 }
 
 
-Node* merge(Node* head1,Node* head2){
+ListNode* merge(ListNode* head1,ListNode* head2){
     // create Dummy one 
-    Node* head = new Node(-1);
-    Node* temp = head;
-    Node* temp1 = head1;
-    Node* temp2 = head2;
+    ListNode* head = new Node(-1);
+    ListNode* temp = head;
+    ListNode* temp1 = head1;
+    ListNode* temp2 = head2;
     while(temp1 != NULL && temp2 != NULL){
         // check which is smaller
         if (temp1->data <= temp2->data){
@@ -132,7 +132,7 @@ Node* merge(Node* head1,Node* head2){
 }
 
 // make binary tree.
-int count(Node* head){
+int count(ListNode* head){
     int n = 0;
     while(head != NULL){
         n+=1;
@@ -141,8 +141,8 @@ int count(Node* head){
     return n;
 }
 
-Node* middleone(Node* head, int n){
-    Node* mid = head;
+ListNode* middleone(ListNode* head, int n){
+    ListNode* mid = head;
     int i =1;
     while(i < n+1){
         mid = mid->right;
@@ -152,14 +152,14 @@ Node* middleone(Node* head, int n){
 
 }
 
-Node* MergeTree(Node* head,int n){
+ListNode* MergeTree(ListNode* head,int n){
 
     if (n == 0 || head == NULL){
         return  NULL;
     }
 
     // find the middle element by n/2
-    Node* mid = middleone(head,n/2);
+    ListNode* mid = middleone(head,n/2);
     // find the root one from the head
     mid->left = MergeTree(head,n/2);
     // now connect right
@@ -170,12 +170,12 @@ Node* MergeTree(Node* head,int n){
 
 }
 
-Node* MergeTree1(Node* &head, int n){
+ListNode* MergeTree1(ListNode* &head, int n){
     if (n<=0 || head == NULL){
         return NULL;
     }
-    Node* left = MergeTree1(head,n/2);
-    Node* root = head;
+    ListNode* left = MergeTree1(head,n/2);
+    ListNode* root = head;
     root->left = left;
     head = head->right; // doubt
     root->right = MergeTree1(head,n-n/2-1);
@@ -183,34 +183,34 @@ Node* MergeTree1(Node* &head, int n){
     return root;
 }
 int main(){
-    Node* root1 = NULL;
+    ListNode* root1 = NULL;
     cout<<"ENTER DATA FOR ROOT 1"<<endl;
     // 50 40 30 -1 -1 45 -1 -1 60 55 -1 -1 70 -1 80 -1 -1
     root1 = createtree(root1);
     printtree(root1);
 
     // make this list doubly linked list.
-    Node* head1 = NULL;
+    ListNode* head1 = NULL;
     DoublyLL(root1,head1);
     cout<<"printling doubling linked list for root 1"<<endl;
     printLL(head1);
 
     cout<<"ENTER DATA FOR ROOT2"<<endl;
     // 53 46 32 -1 -1 49 -1 -1 65 61 -1 -1 71 -1 85 -1 -1
-    Node* root2 = NULL;
+    ListNode* root2 = NULL;
     root2 = createtree(root2);
-    Node* head2 = NULL;
+    ListNode* head2 = NULL;
     DoublyLL(root2,head2);
     cout<<"printling doubling linked list for root 2"<<endl;
     printLL(head2);
 
 
     cout<<"merging both  the list "<<endl;
-    Node* head = merge(head1,head2);
+    ListNode* head = merge(head1,head2);
     printLL(head);
 
     int n = count(head);
-    Node* root = MergeTree1(head,n);
+    ListNode* root = MergeTree1(head,n);
 
 
     cout<<"PRINTING THE TREE"<<endl;

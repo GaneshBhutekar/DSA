@@ -8,8 +8,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this ->data = data;
         this ->left = NULL;
@@ -17,7 +17,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data "<<endl;
     cin>> data;
@@ -34,17 +34,17 @@ Node* buildtree(Node* &root){
     return root;
 }
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root == NULL){
         return;
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        Node* temp = q.front();
+        ListNode* temp = q.front();
         q.pop();
         if (temp == NULL){
             cout<<endl;
@@ -63,14 +63,14 @@ void print_tree(Node* root){
         }
     }
 }
-vector<int> vertical_traversal(Node* root){
+vector<int> vertical_traversal(ListNode* root){
 
     vector<int> ans;
 
     // whee to stire the data.
     map<int,map<int,vector<int>>> store;
     // queue to stire the node , vertical and level wise index.
-    queue<pair<Node*,pair<int,int>>> q;
+    queue<pair<ListNode*,pair<int,int>>> q;
     // here it is pair of nodes and index 
     //push first value
     q.push({root,{0,0}});
@@ -115,7 +115,7 @@ vector<int> vertical_traversal(Node* root){
 
 int main(){
     // 1 2 4 -1 8 10 -1 -1 -1 5 -1 -1 3 7 -1 -1 6 -1 9 -1 -1 
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
 

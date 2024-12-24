@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->right = NULL;
         this->left = NULL;
@@ -17,13 +17,13 @@ class Node{
 
 
 
-void insertData(Node* &root,int data){
+void insertData(ListNode* &root,int data){
     if (root == NULL){
         root = new Node(data);
         return;
     }
 
-    Node* temp = root;
+    ListNode* temp = root;
     while(true){
         if (temp->data > data){
             if (temp->left){
@@ -31,7 +31,7 @@ void insertData(Node* &root,int data){
             }
 
             else{
-                Node* newone = new Node(data);
+                ListNode* newone = new Node(data);
                 temp->left = newone;
                 break;
             }
@@ -42,7 +42,7 @@ void insertData(Node* &root,int data){
                 temp = temp->right;
             }
             else{
-                Node* newone = new Node(data);
+                ListNode* newone = new Node(data);
                 temp->right =  newone;
                 break;
             }
@@ -52,7 +52,7 @@ void insertData(Node* &root,int data){
 }
 
 
-Node* insertRecursive(Node* root , int data){
+ListNode* insertRecursive(ListNode* root , int data){
     if (root == NULL){
         root = new Node(data);
         return root;
@@ -72,7 +72,7 @@ Node* insertRecursive(Node* root , int data){
 }
 
 
-void  createBST(Node* &root){
+void  createBST(ListNode* &root){
     cout<<"enter the data"<<endl;
     int data;
     cin>> data;
@@ -84,16 +84,16 @@ void  createBST(Node* &root){
 
     
 }
-void  print_tree(Node* root){
+void  print_tree(ListNode* root){
     // level order traversal
     if (root == NULL){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -116,7 +116,7 @@ void  print_tree(Node* root){
 
 
 
-bool searchBST(Node* root,int data){
+bool searchBST(ListNode* root,int data){
     // search that element is in tree or not
     if (root == NULL){
         return false;
@@ -136,7 +136,7 @@ bool searchBST(Node* root,int data){
 
 }
 
-bool searchbyloop(Node* root, int data){
+bool searchbyloop(ListNode* root, int data){
     if(root == NULL){
         return false;
     }
@@ -158,7 +158,7 @@ bool searchbyloop(Node* root, int data){
 }
 int main(){
 
-    Node* root  = NULL;
+    ListNode* root  = NULL;
     // vector<int> input = {10,6,4,18,13,11,3,7};
     // for(int i:input){
     //     insertData(root,i);

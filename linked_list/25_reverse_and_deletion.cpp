@@ -6,7 +6,7 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* next;
+    ListNode* next;
     Node(int data){
         this ->data = data;
         this ->next = NULL;
@@ -17,23 +17,23 @@ class Node{
     }
 };
 
-void FromHead(Node* &head,Node* &tail,int data){
-    Node* temp = new Node(data);
+void FromHead(ListNode* &head,ListNode* &tail,int data){
+    ListNode* temp = new Node(data);
     temp->next = head;
     head = temp;
     tail->next = head;
 }
 
-void FromTail(Node* &head,Node* &tail,int data){
-    Node* temp = new Node(data);
+void FromTail(ListNode* &head,ListNode* &tail,int data){
+    ListNode* temp = new Node(data);
     tail->next = temp;
     tail = temp;
     tail->next = head;
 }
 
 
-void print_list(Node*head){
-    Node* temp = head->next;
+void print_list(ListNode*head){
+    ListNode* temp = head->next;
     cout<<head ->data<<" ";
     while(temp != NULL && temp != head){
         cout<<temp->data<<" ";
@@ -43,15 +43,15 @@ void print_list(Node*head){
 }
 
 
-Node* reverse(Node* head){
+ListNode* reverse(ListNode* head){
     if (head == NULL){
         return head;
     }
 
 
-    Node* prev = NULL;
-    Node* next = NULL;
-    Node* curr = head;
+    ListNode* prev = NULL;
+    ListNode* next = NULL;
+    ListNode* curr = head;
 
     do{
         next = curr->next;
@@ -63,7 +63,7 @@ Node* reverse(Node* head){
     return prev;
 }
 
-Node* deleteNode(Node*head,int key){
+ListNode* deleteNode(ListNode*head,int key){
     if (head == NULL){
         return NULL;
     }
@@ -71,8 +71,8 @@ Node* deleteNode(Node*head,int key){
         delete head;
         return NULL;
     }
-    Node* tail = head;
-    Node* temp = NULL;
+    ListNode* tail = head;
+    ListNode* temp = NULL;
     int status = false;
     while(tail ->next !=  head){
         if (tail->next -> data == key && status == false){
@@ -88,14 +88,14 @@ Node* deleteNode(Node*head,int key){
         return head;
     }
     if (tail->next->data == key){
-        Node* demo = tail->next;
+        ListNode* demo = tail->next;
         tail->next = tail->next->next;
         head= head->next;
         demo->next = NULL;
         delete demo;
     }
     else{
-        Node* demo = temp ->next;
+        ListNode* demo = temp ->next;
         temp->next = temp->next->next;
         demo ->next = NULL;
         delete demo;
@@ -104,9 +104,9 @@ Node* deleteNode(Node*head,int key){
 }
 
 int main(){
-    Node* newnode = new Node(13);
-    Node* head = newnode;
-    Node* tail = newnode;
+    ListNode* newnode = new Node(13);
+    ListNode* head = newnode;
+    ListNode* tail = newnode;
     FromTail(head,tail,5);
     FromTail(head,tail,2);
     FromTail(head,tail,13);

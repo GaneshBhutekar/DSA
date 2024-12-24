@@ -4,8 +4,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* next ;
-    Node* down;
+    ListNode* next ;
+    ListNode* down;
     Node(int data){
         this-> data = data;
         this -> next = NULL;
@@ -14,32 +14,32 @@ class Node{
     }
 };
 
-void insertathead(Node* &head,int data){
-    Node* temp = new Node(data);
+void insertathead(ListNode* &head,int data){
+    ListNode* temp = new Node(data);
     temp->next = head;
     head = temp;
 }
-void insertattail(Node* &tail,int data){
-    Node* temp = new Node(data);
+void insertattail(ListNode* &tail,int data){
+    ListNode* temp = new Node(data);
     tail->next = temp;
     tail=temp;
 
 }
-void insertatdown(Node* & niche,int data ){
-    Node* temp = new Node(data);
+void insertatdown(ListNode* & niche,int data ){
+    ListNode* temp = new Node(data);
     niche->down = temp;
     niche = temp;
 }
-void print(Node* head){
-    Node* temp = head;
+void print(ListNode* head){
+    ListNode* temp = head;
     while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->next;
     }
     cout<<endl;
 }
-void print_down(Node* head){
-    Node*temp=head;
+void print_down(ListNode* head){
+    ListNode*temp=head;
     while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->down;
@@ -64,10 +64,10 @@ void sortthevector(vector<int> &storage){
 }
 
 // approach one to solve the linked list to the flatten.
-Node* flatten_downwards_1(Node*head){
+ListNode* flatten_downwards_1(ListNode*head){
     vector<int> storage;
-    Node*temp=head;
-    Node* temp1 = temp;
+    ListNode*temp=head;
+    ListNode* temp1 = temp;
 
     while(temp!= NULL){
         while(temp1!=NULL){
@@ -83,9 +83,9 @@ Node* flatten_downwards_1(Node*head){
 
     // now paste this again in linkedlist
 
-    Node*dummynode= new Node(-1);
-    Node*new_head=dummynode;
-    Node*new_down=dummynode;
+    ListNode*dummynode= new Node(-1);
+    ListNode*new_head=dummynode;
+    ListNode*new_down=dummynode;
 
     for(int i: storage){
         insertatdown(new_down,i);
@@ -94,13 +94,13 @@ Node* flatten_downwards_1(Node*head){
 
 }
 
-Node* mergelist(Node* head1 , Node*head2){
+ListNode* mergelist(ListNode* head1 , ListNode*head2){
     // create a dummy node
-    Node* dummy_node= new Node(-1);
-    Node*head= dummy_node;
-    Node*tail=dummy_node;
-    Node*t1 = head1;
-    Node*t2=head2;
+    ListNode* dummy_node= new Node(-1);
+    ListNode*head= dummy_node;
+    ListNode*tail=dummy_node;
+    ListNode*t1 = head1;
+    ListNode*t2=head2;
 
     while(t1!=NULL && t2!=NULL){
         if (t1->data <= t2->data){  
@@ -134,7 +134,7 @@ Node* mergelist(Node* head1 , Node*head2){
 
 }
 
-Node* flatten_downwards_2(Node*head){
+ListNode* flatten_downwards_2(ListNode*head){
     if (head->next == NULL){
         return head;
     }
@@ -150,23 +150,23 @@ Node* flatten_downwards_2(Node*head){
 
 
 int main(){
-        Node* newnode= new Node(6);
-        Node* tail = newnode;
-        Node* head = newnode;
-        Node* niche1 =newnode;
+        ListNode* newnode= new Node(6);
+        ListNode* tail = newnode;
+        ListNode* head = newnode;
+        ListNode* niche1 =newnode;
 
         insertattail(tail,3);
-        Node* niche2 = tail;
+        ListNode* niche2 = tail;
         insertatdown(niche2,5);
         insertatdown(niche2,10);
 
         insertattail(tail,8);
-        Node* niche3 = tail;
+        ListNode* niche3 = tail;
         insertatdown(niche3,9);
         insertatdown(niche3,10);
 
         insertattail(tail,11);
-        Node*niche4 = tail;
+        ListNode*niche4 = tail;
         insertatdown(niche4,12);
 
         // print to checkout
@@ -178,7 +178,7 @@ int main(){
         print_down(head->next->next->next);
 
         cout<<"after flatten linked list top to the down will be"<<endl;
-        Node* new_head=flatten_downwards_1(head);
+        ListNode* new_head=flatten_downwards_1(head);
         print_down(new_head);
 
         cout<<"with another approach which is more efficient"<<endl;

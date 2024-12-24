@@ -14,12 +14,12 @@ class Node{
 };
 
 void insertionatHead(Node * &head,int data){
-    Node* temp= new Node(data);
+    ListNode* temp= new Node(data);
     temp->next=head;
     head=temp;
 }
 void insertionatTail(Node * &tail,int data){
-    Node* temp = new Node(data);
+    ListNode* temp = new Node(data);
     tail->next= temp;
     tail=temp;
 
@@ -34,7 +34,7 @@ void print(Node * &head){
     cout<<endl;
 }
 
-Node* reversing_approach1(Node* &head){
+ListNode* reversing_approach1(ListNode* &head){
 
     if(head==NULL || head-> next == NULL){
         return head;
@@ -51,7 +51,7 @@ Node* reversing_approach1(Node* &head){
     return prev;
 }
 
-void reverse_approach2(Node* &head,Node*curr,Node*prev){
+void reverse_approach2(ListNode* &head,ListNode*curr,ListNode*prev){
     if (curr==NULL){
         head=prev;
         return;
@@ -60,15 +60,15 @@ void reverse_approach2(Node* &head,Node*curr,Node*prev){
     curr->next=prev;
 }
 
-Node* reverseit(Node*head) {
-    Node* prev=NULL;
-    Node* forword=NULL;
-    Node* curr = head;
+ListNode* reverseit(ListNode*head) {
+    ListNode* prev=NULL;
+    ListNode* forword=NULL;
+    ListNode* curr = head;
     reverse_approach2(head,curr,prev);
     return head;
     
 }
-Node* reverse_approach3(Node*head){
+ListNode* reverse_approach3(ListNode*head){
     if (head==NULL || head-> next == NULL){
         return head;
     }

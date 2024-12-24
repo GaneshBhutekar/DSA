@@ -8,8 +8,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this ->data = data;
         this -> left = NULL;
@@ -19,7 +19,7 @@ class Node{
 };
 
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -41,17 +41,17 @@ void print_array(vector<int> arr){
     cout<<endl;
 }
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root == NULL){
         return;
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        Node* temp = q.front();
+        ListNode* temp = q.front();
         q.pop();
         if (temp == NULL){
             cout<<endl;
@@ -71,7 +71,7 @@ void print_tree(Node* root){
     }
 }
 
-vector<int> diagonal_traversal(Node* root){
+vector<int> diagonal_traversal(ListNode* root){
 
     // don't know why this gicing wring output
     // ans to store the values.
@@ -79,7 +79,7 @@ vector<int> diagonal_traversal(Node* root){
     // data structure to store during the level order traversal.
     map<int,vector<int>> store;
     // data structire of queue to traverse in level order.
-    queue<pair<Node* , pair<int,int>>> q;
+    queue<pair<ListNode* , pair<int,int>>> q;
 
     // start from here.
     q.push({root,{0,0}});
@@ -115,14 +115,14 @@ vector<int> diagonal_traversal(Node* root){
 
 
 
-vector<int> diagonal_traversal_2(Node* root){
+vector<int> diagonal_traversal_2(ListNode* root){
     vector<int> ans;
     if (root == NULL) return ans;
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();    
         while(demo!= NULL){
             if (demo->left != NULL ){
@@ -139,7 +139,7 @@ vector<int> diagonal_traversal_2(Node* root){
 int main(){
     // 8 3 1 -1 -1 6 4 -1 -1 7 -1 -1 10 -1 14 13 -1 -1 -1
     // 8 3 1 -1 -1 6 4 -1 -1 7 -1 -1 10 11 -1 -1 5 2 -1 -1 -1 
-    Node* root=NULL;
+    ListNode* root=NULL;
     buildtree(root);
     print_tree(root);
     vector<int> ans = diagonal_traversal_2(root);

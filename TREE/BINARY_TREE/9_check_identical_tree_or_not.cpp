@@ -7,8 +7,8 @@ using namespace std;
 class node{
     public:
     int data;
-    node* right;
-    node* left;
+    ListNode* right;
+    ListNode* left;
     node(int data){
         this->data = data;
         this -> right = NULL;
@@ -19,7 +19,7 @@ class node{
     
 };
 
-node* buildtree(node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter data "<<endl;
     cin>>data;
@@ -40,12 +40,12 @@ node* buildtree(node* &root){
 
 
 void print_tree(node * root){
-    queue<node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -68,7 +68,7 @@ void print_tree(node * root){
 }
 
 
-bool identical_or_not(node* r1,node*r2){
+bool identical_or_not(ListNode* r1,ListNode*r2){
     // level order approach 
 
     if (r1 == NULL && r2 == NULL){
@@ -78,8 +78,8 @@ bool identical_or_not(node* r1,node*r2){
     if (r2 == NULL || r1 == NULL){
         return false;
     }
-    queue<node*> q1;
-    queue<node*> q2;
+    queue<ListNode*> q1;
+    queue<ListNode*> q2;
 
     if (r1->data == r2->data){ // this is redundant 
         q1.push(r1);
@@ -92,8 +92,8 @@ bool identical_or_not(node* r1,node*r2){
     }
     
     while(!q1.empty() && !q2.empty()){
-        node* demo1 = q1.front();
-        node* demo2 = q2.front();
+        ListNode* demo1 = q1.front();
+        ListNode* demo2 = q2.front();
         q1.pop();
         q2.pop();
 
@@ -133,7 +133,7 @@ bool identical_or_not(node* r1,node*r2){
 
 
 
-bool identical_or_not2(node* r1,node* r2){
+bool identical_or_not2(ListNode* r1,ListNode* r2){
 
     // pre order approach
     if (r1 == NULL && r2 == NULL){
@@ -159,14 +159,14 @@ int main(){
     // 1 2 4 -1 -1 5 6 -1 -1 -1 3 4 -1 -1 -1
 
     // 1 2 4 -1 5 -1 -1 -1 3 -1 -1 
-    node* root1 = NULL;
+    ListNode* root1 = NULL;
 
     cout<<"enter the data for tree1 "<<endl;
     buildtree(root1);
     print_tree(root1);
 
     cout<<"enter the data for tree2"<<endl;
-    node* root2 = NULL;
+    ListNode* root2 = NULL;
     buildtree(root2);
     print_tree(root2);
 

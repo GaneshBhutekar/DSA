@@ -18,8 +18,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* next ;
-    Node* down;
+    ListNode* next ;
+    ListNode* down;
     Node(int data){
         this-> data = data;
         this -> next = NULL;
@@ -28,32 +28,32 @@ class Node{
     }
 };
 
-void insertathead(Node* &head,int data){
-    Node* temp = new Node(data);
+void insertathead(ListNode* &head,int data){
+    ListNode* temp = new Node(data);
     temp->next = head;
     head = temp;
 }
-void insertattail(Node* &tail,int data){
-    Node* temp = new Node(data);
+void insertattail(ListNode* &tail,int data){
+    ListNode* temp = new Node(data);
     tail->next = temp;
     tail=temp;
 
 }
-void insertatdown(Node* & niche,int data ){
-    Node* temp = new Node(data);
+void insertatdown(ListNode* & niche,int data ){
+    ListNode* temp = new Node(data);
     niche->down = temp;
     niche = temp;
 }
-void print(Node* head){
-    Node* temp = head;
+void print(ListNode* head){
+    ListNode* temp = head;
     while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->next;
     }
     cout<<endl;
 }
-void print_down(Node* head){
-    Node*temp=head;
+void print_down(ListNode* head){
+    ListNode*temp=head;
     while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->down;
@@ -62,19 +62,19 @@ void print_down(Node* head){
 }
 
 
-Node* Merge2Sort(Node* head1,Node*head2){
+ListNode* Merge2Sort(ListNode* head1,ListNode*head2){
     if (head1==NULL){
         return head2;
     }
     if (head2==NULL){
         return head1;
     }
-    Node* new_list = new Node(-1); // dummy node.
-    Node* tail= new_list;
-    Node* head = new_list;
+    ListNode* new_list = new Node(-1); // dummy node.
+    ListNode* tail= new_list;
+    ListNode* head = new_list;
 
-    Node* temp1 = head1 ;// traverse through down member.
-    Node* temp2 = head2 ;// traverse through next member.
+    ListNode* temp1 = head1 ;// traverse through down member.
+    ListNode* temp2 = head2 ;// traverse through next member.
 
     while(temp1 != NULL && temp2 != NULL){
         if (temp1 ->data <= temp2 -> data ){
@@ -100,7 +100,7 @@ Node* Merge2Sort(Node* head1,Node*head2){
 
 }
 
-Node* flatten(Node* head){
+ListNode* flatten(ListNode* head){
     if (head==NULL  || head->next == NULL){
         return head;
     }
@@ -117,9 +117,9 @@ Node* flatten(Node* head){
 
 }
 int main(){
-    Node* node= new Node(50);
-    Node* head=node;
-    Node* tail = node;
+    ListNode* node= new Node(50);
+    ListNode* head=node;
+    ListNode* tail = node;
 
     insertattail(tail,30);
     insertattail(tail,40);
@@ -128,26 +128,26 @@ int main(){
     print(head);
 
     // setting down pointer;
-    Node* niche1 = head;
+    ListNode* niche1 = head;
     insertatdown(niche1,60);
     insertatdown(niche1,70);
     insertatdown(niche1,75);
     
-    Node* niche2 = head->next;
+    ListNode* niche2 = head->next;
     insertatdown(niche2,31);
     insertatdown(niche2,32);
 
-    Node* niche3 = head->next ->next ;
+    ListNode* niche3 = head->next ->next ;
     insertatdown(niche3,44);    
     insertatdown(niche3,48);
 
-    Node* niche4 = head->next->next ->next ;
+    ListNode* niche4 = head->next->next ->next ;
     insertatdown(niche4,65);
 
     print_down(head->next->next->next);
 
 
-    Node* merged_to_flatten = flatten(head);
+    ListNode* merged_to_flatten = flatten(head);
     cout<<"flattened the branched linked list"<<endl;
     print(merged_to_flatten);
 

@@ -24,12 +24,12 @@ class Node2{
 };
 
 void insertionatHead(Node * &head,int data){
-    Node* temp= new Node(data);
+    ListNode* temp= new Node(data);
     temp->next=head;
     head=temp;
 }
 void insertionatTail(Node * &tail,int data){
-    Node* temp = new Node(data);
+    ListNode* temp = new Node(data);
     tail->next= temp;
     tail=temp;
 
@@ -79,9 +79,9 @@ bool check_circular_or_not(Node2 * tail){
     return false;
 }
 int main(){
-    Node* node = new Node(10);
-    Node*tail=node;
-    Node*head=node;
+    ListNode* node = new Node(10);
+    ListNode*tail=node;
+    ListNode*head=node;
     insertionatTail(tail,20);
     insertionatTail(tail,30);
     insertionatTail(tail,40);

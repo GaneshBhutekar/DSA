@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         this->right = NULL;
@@ -17,7 +17,7 @@ class Node{
 
 
 // input in the binary search tree
-Node* Tree(Node* root){
+ListNode* Tree(ListNode* root){
     int data;
     cout<<"enter data"<<endl;
     cin>>data;
@@ -36,15 +36,15 @@ Node* Tree(Node* root){
 }
 
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root ==NULL){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -67,7 +67,7 @@ void print_tree(Node* root){
 
 // MYAPPROACH .............
 
-int solve(Node* root,int &smallest,int &largest,int &Largest_size){
+int solve(ListNode* root,int &smallest,int &largest,int &Largest_size){
     if (root==NULL){
         smallest = -1;
         largest = -1;
@@ -108,7 +108,7 @@ int solve(Node* root,int &smallest,int &largest,int &Largest_size){
     
 }
 /// check for the correct BST
-int validBst(Node* root){
+int validBst(ListNode* root){
     int smallest = -1; // represent that it is null
     int largest = -1;
     // and return the size if size is -1 it means till now from below there is no BST at all.
@@ -119,7 +119,7 @@ int validBst(Node* root){
 }
 
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     root= Tree(root);
 
     print_tree(root);

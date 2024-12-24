@@ -16,14 +16,14 @@ void insertatHead(Node * &head,int data){
     head=temp;
 
 }
-void insertatTail(Node*&tail,int data){
+void insertatTail(ListNode*&tail,int data){
     Node * temp=new Node(data);
     tail->next=temp;
     tail=temp;
 }
 
-int givelength(Node* head){
-    Node* temp=head;
+int givelength(ListNode* head){
+    ListNode* temp=head;
     int length=0;
     while(temp!=NULL){
         length++;
@@ -33,10 +33,10 @@ int givelength(Node* head){
 }
 
 // approach one.
-Node* FindMidelement(Node * &head){
+ListNode* FindMidelement(Node * &head){
     int length=givelength(head);
     int mid=length/2;
-    Node*temp=head;
+    ListNode*temp=head;
     int cnt=0;
     while(cnt<mid){
         temp= temp->next;
@@ -46,7 +46,7 @@ Node* FindMidelement(Node * &head){
 }
 
 // second approach 
-Node * Findmidelement2(Node*head){
+Node * Findmidelement2(ListNode*head){
     if(head == NULL || head ->next== NULL){
         return head;
     }
@@ -54,8 +54,8 @@ Node * Findmidelement2(Node*head){
         return head->next;
     }
 
-    Node*Fast=head;
-    Node*slower=head;
+    ListNode*Fast=head;
+    ListNode*slower=head;
     while(Fast!=NULL && Fast -> next != NULL){
         Fast = Fast->next->next; // 2x speed.
         slower=slower->next;
@@ -79,7 +79,7 @@ void print(Node * head){
 int main(){
     Node * node=new Node(10);
     Node * head = node;
-    Node*tail=node;
+    ListNode*tail=node;
     print(head);
 
     insertatTail(tail,20);

@@ -7,8 +7,8 @@ using namespace std;
 class Node {
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this -> data = data;
         this -> right = NULL;
@@ -17,7 +17,7 @@ class Node {
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data "<<endl;
     cin>> data;
@@ -43,13 +43,13 @@ void print_array(vector<int> arr){
     cout<<endl;
 }
 
-void print(Node* root){
-    queue<Node*> q;
+void print(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        Node* temp  = q.front();
+        ListNode* temp  = q.front();
         q.pop();
 
         if (temp == NULL){
@@ -72,7 +72,7 @@ void print(Node* root){
     }    
 }
 
-void left_nodes(Node* root,vector<int> &ans){
+void left_nodes(ListNode* root,vector<int> &ans){
     if (root == NULL){
         return;
     }
@@ -96,7 +96,7 @@ void left_nodes(Node* root,vector<int> &ans){
 
 }
 
-void right_nodes(Node* root,stack<int> &st){
+void right_nodes(ListNode* root,stack<int> &st){
     if (root == NULL){
         return;
     }
@@ -114,7 +114,7 @@ void right_nodes(Node* root,stack<int> &st){
 }
 
 
-void leaf_nodes(Node* root, vector<int> & ans){
+void leaf_nodes(ListNode* root, vector<int> & ans){
     if (root == NULL){
         return;
     }
@@ -133,7 +133,7 @@ void leaf_nodes(Node* root, vector<int> & ans){
 }
 
 
-vector<int> boundary(Node* root){
+vector<int> boundary(ListNode* root){
     vector<int> ans;
     ans.push_back(root->data);
 
@@ -157,7 +157,7 @@ vector<int> boundary(Node* root){
 }
 
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print(root);
     // 1 2 -1 3 4 -1 6 -1 -1 5 -1 -1 -1

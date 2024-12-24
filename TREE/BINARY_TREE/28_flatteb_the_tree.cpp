@@ -5,8 +5,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this ->data = data;
         this ->right = NULL;
@@ -14,7 +14,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -33,12 +33,12 @@ Node* buildtree(Node* &root){
 
 }
 
-void print_tree(Node* root){
-    queue<Node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -60,8 +60,8 @@ void print_tree(Node* root){
 }
 
 
-Node* preceder(Node* curr){
-    Node* prec = curr->left;
+ListNode* preceder(ListNode* curr){
+    ListNode* prec = curr->left;
     // here we are not repeating to the curr it means just check node before the null
     while(prec->right != NULL){
         prec=prec->right;
@@ -69,19 +69,19 @@ Node* preceder(Node* curr){
     return prec;
 }
 
-void flatten(Node* &root){
+void flatten(ListNode* &root){
     if (root == NULL){
         return;
     }
 
-    Node* curr = root;
+    ListNode* curr = root;
     while(curr != NULL){
         if (curr ->left == NULL){
             curr=curr->right;
         }
         else{
             // there will be prec which next right is null because we don't need to traverse again to curr
-            Node* prec = preceder(curr);
+            ListNode* prec = preceder(curr);
             prec->right = curr->right;
             curr->right = curr->left;
             curr->left = NULL;
@@ -92,7 +92,7 @@ void flatten(Node* &root){
 
 
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
     // 1 2 4 8 -1 -1 9 11 -1 -1 12 -1 -1 5 -1 -1 3 6 -1 -1 7 -1 10 -1 -1 

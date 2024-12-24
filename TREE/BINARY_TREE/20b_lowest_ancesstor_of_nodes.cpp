@@ -4,8 +4,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this->data = data;
         left = NULL;
@@ -13,7 +13,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -32,12 +32,12 @@ Node* buildtree(Node* &root){
 
 }
 
-void print_tree(Node* root){
-    queue<Node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -58,15 +58,15 @@ void print_tree(Node* root){
     }
 }
 
-Node* lca(Node* root , int n1 , int n2){
+ListNode* lca(ListNode* root , int n1 , int n2){
     if (root == NULL){
         return NULL;
     }
 
 
     // if left is null and right is null
-    Node* left = lca(root->left,n1,n2);
-    Node* right = lca(root->right,n1,n2);
+    ListNode* left = lca(root->left,n1,n2);
+    ListNode* right = lca(root->right,n1,n2);
 
     if (root->data == n1 || root->data == n2){
         return root;
@@ -87,12 +87,12 @@ Node* lca(Node* root , int n1 , int n2){
 
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
     // 1 2 4 8 13 -1 -1 14 -1 -1 9 -1 -1 5 -1 10 11 -1 -1 12 -1 -1 3 6 -1 -1 7 -1 -1
     int n1 = 9;
     int n2 = 14;
-    Node* ans = lca(root,n1,n2);
+    ListNode* ans = lca(root,n1,n2);
     cout<<"coomon closest ancestor "<<ans->data<<endl;
 }

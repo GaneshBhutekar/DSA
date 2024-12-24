@@ -1,15 +1,15 @@
-Node* approached_two(Node*head){
-    Node*zeros=new Node(0);
-    Node*head_zeros=zeros;
-    Node*tail_zero=zeros ;
-    Node*ones=new Node(0);
-    Node*head_ones=ones;
-    Node*tail_ones=ones;
-    Node*two = new Node(0);
-    Node*head_two=two;
-    Node*tail_twos=two;
+ListNode* approached_two(ListNode*head){
+    ListNode*zeros=new Node(0);
+    ListNode*head_zeros=zeros;
+    ListNode*tail_zero=zeros ;
+    ListNode*ones=new Node(0);
+    ListNode*head_ones=ones;
+    ListNode*tail_ones=ones;
+    ListNode*two = new Node(0);
+    ListNode*head_two=two;
+    ListNode*tail_twos=two;
 
-    Node*temp=head;
+    ListNode*temp=head;
     while(temp!=NULL){
         if (temp->data == 0){
             insertatTail(tail_zero,0);
@@ -30,7 +30,7 @@ Node* approached_two(Node*head){
     tail_zero->next=head_ones->next;
     tail_ones->next=head_two->next;
     }
-    Node*todelete=head_zeros;
+    ListNode*todelete=head_zeros;
     head_zeros=head_zeros->next;
     todelete->next=NULL;
     delete todelete;

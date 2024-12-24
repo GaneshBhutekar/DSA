@@ -13,8 +13,8 @@ using namespace std;
 class node{
     public:
     int data;
-    node* right;
-    node* left;
+    ListNode* right;
+    ListNode* left;
     node(int data){
         this->data = data;
         this->right=NULL;
@@ -25,7 +25,7 @@ class node{
 
 };
 
-node* buildtree(node * &root){
+ListNode* buildtree(node * &root){
     int data;
     cout<<"enter the element "<<endl;
     cin>> data;
@@ -47,11 +47,11 @@ node* buildtree(node * &root){
 }
 // do in pre post in iteration.
 
-void inorder(node*root){
+void inorder(ListNode*root){
     // need stack for traversal
-    stack<node*> st;
+    stack<ListNode*> st;
 
-    node*current = root;
+    ListNode*current = root;
 
     // now iterate over till all the nodes are'nt covered.
     while(current != NULL || !st.empty()){
@@ -78,10 +78,10 @@ void inorder(node*root){
 }
 
 
-void preorder(node* root){
-    stack<node*> st;
+void preorder(ListNode* root){
+    stack<ListNode*> st;
 
-    node* current = root;
+    ListNode* current = root;
 
     // traverse till all noe printed
     while(current != NULL || !st.empty()){
@@ -105,13 +105,13 @@ void preorder(node* root){
 }
 // to do postorder which is LRN we have to do NRL and then reverse it so we need 2 stack
 
-void postorder(node* root){
+void postorder(ListNode* root){
     // first do NRL
 
-    stack<node*> st;
-    stack<node*> reverse;
+    stack<ListNode*> st;
+    stack<ListNode*> reverse;
 
-    node*current = root;
+    ListNode*current = root;
     while(current != NULL || !st.empty()){
 
         // iterate right continuosly
@@ -138,7 +138,7 @@ void postorder(node* root){
 
 
 int main(){
-    node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
 
     cout<<"inorder traversal"<<endl;

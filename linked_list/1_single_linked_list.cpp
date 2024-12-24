@@ -3,7 +3,7 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* next; // to stire next node address
+    ListNode* next; // to stire next node address
     Node(int data){
         this->data=data;
         this->next=NULL;
@@ -16,8 +16,8 @@ class Node{
         // delete this ;
     }
 };
-void insertionAtHead(Node* &head,int data){
-    Node* temp = new Node(data);
+void insertionAtHead(ListNode* &head,int data){
+    ListNode* temp = new Node(data);
     temp->next=head;
     head=temp;
 
@@ -60,7 +60,7 @@ void InserttionAtPosition(Node * &tail,Node * &head,int position,int value){
     temp-> next = new_node;
 }
 
-void deletion(Node* &tail,Node * &head,int position){
+void deletion(ListNode* &tail,Node * &head,int position){
     // deletion of start or first node
     if (position==1){
         Node * temp = head;
@@ -104,8 +104,8 @@ void deletion_by_value(Node * &tail,Node * &head,int value){
 
 int main(){
     Node *node1=new Node(10); // creating first node
-    Node* head=node1;
-    Node* tail=node1;
+    ListNode* head=node1;
+    ListNode* tail=node1;
     print(head);
     // create new node
     inserttionAtTail(tail,30);

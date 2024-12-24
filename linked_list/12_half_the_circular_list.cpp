@@ -21,24 +21,24 @@ class Node{
 
 };
 
-void insertelement(Node*&tail,int position,int data){
+void insertelement(ListNode*&tail,int position,int data){
     if (tail==NULL){
-        Node*newnode= new Node(data);
+        ListNode*newnode= new Node(data);
         newnode->next=newnode;
         tail=newnode;
         return;
     }
-    Node*temp=tail;
+    ListNode*temp=tail;
     while(temp->data!=position){
         temp=temp->next;
     }
-    Node*newnode =  new Node(data);
+    ListNode*newnode =  new Node(data);
     newnode->next=temp->next;
     temp->next=newnode;
 
 }
-void print(Node*tail){
-    Node*temp=tail;
+void print(ListNode*tail){
+    ListNode*temp=tail;
     do{
         cout<<temp->data<<" ";
         temp=temp->next;
@@ -46,8 +46,8 @@ void print(Node*tail){
     cout<<endl;
 }
 
-int findlength(Node*tail){
-    Node*temp=tail;
+int findlength(ListNode*tail){
+    ListNode*temp=tail;
     int count=0;
     do{
         count++;
@@ -56,20 +56,20 @@ int findlength(Node*tail){
     return count;
 
 }
-vector<Node*> half_the_list(Node*tail){
+vector<ListNode*> half_the_list(ListNode*tail){
     if (tail== NULL){
             cout<<"empty list is not alloweed"<<endl;
             return {tail,tail};
     }
     
-    Node*head1=NULL;
-    Node*tail1=NULL;
+    ListNode*head1=NULL;
+    ListNode*tail1=NULL;
     //length of the list
     int count=findlength(tail);
     if (count == 1){
         return {tail,tail};
     }
-    Node*temp=tail;
+    ListNode*temp=tail;
     int cnt=1;
     do{
 
@@ -84,7 +84,7 @@ vector<Node*> half_the_list(Node*tail){
 
     tail1->next = tail;
     temp->next=head1;
-    vector<Node*> ans= {tail,head1};
+    vector<ListNode*> ans= {tail,head1};
     cout<<"tail1 is "<<tail1->data<<endl;
     cout<<"temp is "<< temp->data<<endl;
 
@@ -95,7 +95,7 @@ vector<Node*> half_the_list(Node*tail){
 
 
 int main(){
-    Node*tail=NULL;
+    ListNode*tail=NULL;
     insertelement(tail,5,10);
     insertelement(tail,10,15);
     insertelement(tail,15,20);
@@ -105,7 +105,7 @@ int main(){
     insertelement(tail,35,40);
     print(tail);
     // cout<<findlength(tail)<<endl;
-    vector<Node*> heads=half_the_list(tail);
+    vector<ListNode*> heads=half_the_list(tail);
 
     cout<<"first half of the linked list"<<endl;
     print(heads[0]);

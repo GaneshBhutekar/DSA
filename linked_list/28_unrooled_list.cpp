@@ -10,7 +10,7 @@ class Node{
     static const int n = 5;
     static const int thersold = 3;
     int arr[n];
-    Node* next;
+    ListNode* next;
     Node(){
         this -> noE = 0;
         this->next = NULL;
@@ -20,12 +20,12 @@ class Node{
 
 
 
-void print_ULL(Node*head){
+void print_ULL(ListNode*head){
     if (head == NULL){
         return;
     }
     
-    Node* temp = head;
+    ListNode* temp = head;
     while(temp!= NULL){
         for(int i =0;i<temp->noE;i++){
             cout<<temp->arr[i]<<" ";
@@ -34,7 +34,7 @@ void print_ULL(Node*head){
         temp = temp ->next;
     }
 }
-void insertList(Node* &head,int data){
+void insertList(ListNode* &head,int data){
     if (head == NULL){
         // create the Node
         head = new Node();
@@ -46,7 +46,7 @@ void insertList(Node* &head,int data){
 
    
     else{
-        Node* temp = head;
+        ListNode* temp = head;
         int thersold = temp->thersold;
         while(temp->next != NULL){
             temp = temp->next;
@@ -60,7 +60,7 @@ void insertList(Node* &head,int data){
         }
 
         else{
-            Node* newone = new Node();
+            ListNode* newone = new Node();
             newone-> arr[newone ->noE] = data;
             newone-> noE++;
             temp->next = newone;
@@ -72,12 +72,12 @@ void insertList(Node* &head,int data){
 
 // finding the element require ascending order so that there will be the benifits of it.
 
-bool find_ULL(Node* head,int data){
+bool find_ULL(ListNode* head,int data){
     if(head == NULL){
         return NULL;
 
     }
-    Node* temp = head;
+    ListNode* temp = head;
     while(temp != NULL){
         if (temp->arr[temp->noE-1 ] == data){
             return true;
@@ -96,7 +96,7 @@ bool find_ULL(Node* head,int data){
     return false;
 }
 int main(){
-    Node* head = NULL;
+    ListNode* head = NULL;
     cout<<"enter the data "<<endl;
     int data;
     cin>>data;

@@ -6,8 +6,8 @@ using namespace std;
 class node{
     public:
     int data;
-    node* left;
-    node* right;
+    ListNode* left;
+    ListNode* right;
     node(int data){
         this -> data = data;
         this -> right = NULL;
@@ -17,7 +17,7 @@ class node{
 };
 
 
-node* buildtree(node* root){
+ListNode* buildtree(ListNode* root){
 
     int data;
     cout<<"enter the element"<<endl;
@@ -42,12 +42,12 @@ node* buildtree(node* root){
 }
 
 
-void level_order(node* root){
-    queue<node*> q;
+void level_order(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        node* current = q.front();
+        ListNode* current = q.front();
         q.pop();
         if (current == NULL){
             cout<<endl;
@@ -71,7 +71,7 @@ void level_order(node* root){
 }
 
 // now check how many node are child - recurssion.
-int child_nodes(node* root){
+int child_nodes(ListNode* root){
 
     // this is post order way u can do it by pre order and inroder too.
 
@@ -89,7 +89,7 @@ int child_nodes(node* root){
 }
 int main(){
     // 20 10 5 -1 -1 15 13 -1 -1 -1 35 30 -1 -1 42 -1 -1
-    node* root = NULL;
+    ListNode* root = NULL;
     root = buildtree(root);
     level_order(root);
     int ans = child_nodes(root);

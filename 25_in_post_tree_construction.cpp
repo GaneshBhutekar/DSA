@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this ->data = data;
         left = NULL;
@@ -19,7 +19,7 @@ class Node{
 
 // construct the tree 
 
-Node* solve(int post[],int in[],int &index,int start,int end,int n, map<int,int> &mp){
+ListNode* solve(int post[],int in[],int &index,int start,int end,int n, map<int,int> &mp){
 
     // base case
     if (index < 0 || start > end){
@@ -29,7 +29,7 @@ Node* solve(int post[],int in[],int &index,int start,int end,int n, map<int,int>
     // element 
     int element = post[index--];
     // pahla jo hain vo node bana do
-    Node* root = new Node(element);
+    ListNode* root = new Node(element);
 
     // find the position pf the element in in
     int position = mp[element];
@@ -47,7 +47,7 @@ Node* solve(int post[],int in[],int &index,int start,int end,int n, map<int,int>
 
 
 
-Node* buildTree(int n , int in[],int post[]){
+ListNode* buildTree(int n , int in[],int post[]){
     // traversal toh post se hoga
     // check ki right main node hain aur left main hain voh in karega.
 
@@ -60,14 +60,14 @@ Node* buildTree(int n , int in[],int post[]){
     return solve(post,in,index,0,n-1,n,mp);
 
 }
-void print_tree(Node* root){
+void print_tree(ListNode* root){
 
     if (root == NULL) return;
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -97,7 +97,7 @@ int main(){
 
     int n = 8;
 
-    Node* root = buildTree(n,in,post);
+    ListNode* root = buildTree(n,in,post);
 
     print_tree(root);
 

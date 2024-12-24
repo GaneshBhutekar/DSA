@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->right = NULL;
         this->left = NULL;
@@ -19,7 +19,7 @@ class Node{
 };
 
 
-Node* insertRecursive(Node* root , int data){
+ListNode* insertRecursive(ListNode* root , int data){
     if (root == NULL){
         root = new Node(data);
         return root;
@@ -39,7 +39,7 @@ Node* insertRecursive(Node* root , int data){
 }
 
 
-void  createBST(Node* &root){
+void  createBST(ListNode* &root){
     cout<<"enter the data"<<endl;
     int data;
     cin>> data;
@@ -51,16 +51,16 @@ void  createBST(Node* &root){
 
     
 }
-void  print_tree(Node* root){
+void  print_tree(ListNode* root){
     // level order traversal
     if (root == NULL){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -83,7 +83,7 @@ void  print_tree(Node* root){
 
 
 
-// Node* DeleteTheNode(Node* &root,int data){ // bekar code hain pr tobhi acha socha time pass mt kar
+// ListNode* DeleteTheNode(ListNode* &root,int data){ // bekar code hain pr tobhi acha socha time pass mt kar
 //     if (root == NULL){
 //         return NULL;
 //     }
@@ -95,14 +95,14 @@ void  print_tree(Node* root){
 //             return NULL;
 //         }
 //         if (root->left == NULL){
-//             Node* todelete = root;
+//             ListNode* todelete = root;
 //             root = root->right;
 //             todelete->right = NULL;
 //             delete todelete;
 //             return root->right;
 //         }
 //         else if (root->right == NULL){
-//             Node* todelete = root;
+//             ListNode* todelete = root;
 //             root = root->left;
 //             todelete ->left = NULL;
 //             delete todelete;
@@ -110,7 +110,7 @@ void  print_tree(Node* root){
 //         }
 //         else if (root->left ->right == NULL){
 //             root->left->right = root->right;
-//             Node* todelete = root;
+//             ListNode* todelete = root;
 //             root = root->left;
 //             todelete->right = NULL;
 //             todelete->left = NULL;
@@ -118,12 +118,12 @@ void  print_tree(Node* root){
 //         }
 //         else{
 //             cout<<"ji ha main yaha pe aya"<<endl;
-//             Node* temp = root->left;
+//             ListNode* temp = root->left;
 //             while(temp->right != NULL){
 //                 temp = temp->right;
 //             }
 //             temp ->right = root->right;
-//             Node* todelete = root;
+//             ListNode* todelete = root;
 //             root = root->left;
 //             todelete->left = NULL;
 //             todelete ->right = NULL;
@@ -146,7 +146,7 @@ void  print_tree(Node* root){
 // }
 
 
-Node* inorderPredecessor(Node* root){
+ListNode* inorderPredecessor(ListNode* root){
     if (root == NULL){
         return NULL;
     }
@@ -158,7 +158,7 @@ Node* inorderPredecessor(Node* root){
 }
 
 
-Node* DeleteBst(Node* root ,int data){
+ListNode* DeleteBst(ListNode* root ,int data){
     // base cases
     if (root == NULL){
         return NULL;
@@ -175,14 +175,14 @@ Node* DeleteBst(Node* root ,int data){
         // if there is left null
 
         else if (root->left != NULL && root->right == NULL){
-            Node* temp = root ->left;
+            ListNode* temp = root ->left;
             root->left = NULL;
             delete root;
             return temp;
         }
         // if there is right null
         else if (root ->left == NULL && root->right != NULL){
-            Node* temp = root->right;
+            ListNode* temp = root->right;
             root->right = NULL;
             delete root;
             return temp;
@@ -211,7 +211,7 @@ Node* DeleteBst(Node* root ,int data){
     return root;
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     createBST(root);
     print_tree(root);
     // 100 50 110 25 70 60 120 115 111 116 125 121 126

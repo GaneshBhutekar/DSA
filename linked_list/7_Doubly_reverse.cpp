@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data ;
-    Node* prev;
-    Node* next;
+    ListNode* prev;
+    ListNode* next;
     Node(int data){
         this-> data = data;
         this-> prev = NULL;
@@ -24,14 +24,14 @@ void insertatHead(Node * &head,int data){
 }
 
 void insertionatTail(Node * & tail,int data){
-    Node* temp = new Node(data);
+    ListNode* temp = new Node(data);
     tail->next=temp;
     temp->prev=tail;
     tail=temp;
 }
 
-void print(Node* head){
-    Node* temp=head;
+void print(ListNode* head){
+    ListNode* temp=head;
     while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->next;
@@ -39,10 +39,10 @@ void print(Node* head){
     cout<<endl;
 }
 
-Node* reverse_doubly(Node* head){
-    Node*previous=NULL;
-    Node* curr = head;
-    Node* forward = NULL;
+ListNode* reverse_doubly(ListNode* head){
+    ListNode*previous=NULL;
+    ListNode* curr = head;
+    ListNode* forward = NULL;
     while(curr != NULL){
         forward=curr->next;
         curr->next=previous;
@@ -55,7 +55,7 @@ Node* reverse_doubly(Node* head){
 
 }
 
-void recurrsive_reverse(Node * &head ,Node *curr,Node*previous){
+void recurrsive_reverse(Node * &head ,Node *curr,ListNode*previous){
     if (curr == NULL){
         head=previous;
         return;
@@ -68,17 +68,17 @@ void recurrsive_reverse(Node * &head ,Node *curr,Node*previous){
     curr->next=previous;
 }
 
-Node* reverseit(Node*head){
-    Node*previous=NULL;
-    Node*curr=head;
+ListNode* reverseit(ListNode*head){
+    ListNode*previous=NULL;
+    ListNode*curr=head;
     recurrsive_reverse(head,curr,previous);
     return head;
 
 }
 int main(){
     Node *node=new Node(10);
-    Node*tail=node;
-    Node*head=node;
+    ListNode*tail=node;
+    ListNode*head=node;
     
     insertionatTail(tail,20);
     insertionatTail(tail,30);

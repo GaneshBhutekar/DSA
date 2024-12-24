@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         right = NULL;
@@ -23,17 +23,17 @@ class Node{
 
 
 
-void print(Node* root){
+void print(ListNode* root){
     if (root == NULL){
         return;
 
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -54,7 +54,7 @@ void print(Node* root){
         }
     }
 }
-Node* insert(Node* & root,int data){
+ListNode* insert(ListNode* & root,int data){
     if (root == NULL){
         root = new Node(data);
         return root;
@@ -72,7 +72,7 @@ Node* insert(Node* & root,int data){
 
 }
 
-void insertTree(Node* &root){
+void insertTree(ListNode* &root){
     int data;
     cout<<"enter the dta"<<endl;
     cin>>data;
@@ -83,29 +83,29 @@ void insertTree(Node* &root){
 
 }
 
-Node* predecessor(Node* curr){
-    Node* pred = curr->left;
+ListNode* predecessor(ListNode* curr){
+    ListNode* pred = curr->left;
     while(pred->right != NULL){
         pred = pred -> right;
     }
     return pred;
 }
 
-Node* successor(Node* curr){
-    Node* succ = curr->right;
+ListNode* successor(ListNode* curr){
+    ListNode* succ = curr->right;
     while(succ ->left != NULL){
         succ = succ->left;
     }
     return succ;
 }
-Node* BST_to_LL(Node* root){
+ListNode* BST_to_LL(ListNode* root){
     // check first it is null or not
     if (root == NULL){
         return NULL;
     }
 
-    Node* curr = root;
-    Node* start;
+    ListNode* curr = root;
+    ListNode* start;
     int min = curr->data;
     while(curr != NULL){
         // check is there left have 
@@ -115,11 +115,11 @@ Node* BST_to_LL(Node* root){
         }
         if (curr->left){
             // check for the predecessor;
-            Node* pred = predecessor(curr);
+            ListNode* pred = predecessor(curr);
             // now connect the 
             pred -> right = curr;
             // remove curr ka left
-            Node* temp = curr->left;
+            ListNode* temp = curr->left;
 
             curr->left = NULL;
             // temp= curr;
@@ -133,9 +133,9 @@ Node* BST_to_LL(Node* root){
             // first if curr right is NULL then do nothing just do next
             // second there is to find the successor and connect curr right tp that successor
             if (curr->right != NULL){
-                Node* succ = successor(curr);
+                ListNode* succ = successor(curr);
                 //store the curr right  first
-                Node* temp = curr->right;
+                ListNode* temp = curr->right;
                 curr->right = succ;
                 curr = temp;
             }
@@ -149,7 +149,7 @@ Node* BST_to_LL(Node* root){
 }
 
 
-void print_list(Node* start){
+void print_list(ListNode* start){
     while(start != NULL){
         cout<<start->data<<" ";
         start = start->right;
@@ -157,11 +157,11 @@ void print_list(Node* start){
     cout<<endl;
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     insertTree(root);
     // 10 5 15 3 7 11 16 21 4 24 22
     print(root);
-    Node* x = BST_to_LL(root);
+    ListNode* x = BST_to_LL(root);
     cout<<"printing the LL"<<endl;
     print_list(x);
 }

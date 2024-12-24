@@ -8,8 +8,8 @@
     class node{
         public:
         int data;
-        node* left;
-        node* right;
+        ListNode* left;
+        ListNode* right;
         node(int data){
             this -> data = data;
             this->left = NULL;
@@ -21,7 +21,7 @@
 
 
     // create the binary tree.
-    node* createtree(node* &root){
+    ListNode* createtree(ListNode* &root){
         // get data
         cout<<"enter the data"<<endl;
         int data;
@@ -41,14 +41,14 @@
         return root;
     }
 
-    void normal_traversal(node*root){
+    void normal_traversal(ListNode*root){
         // we need queue for it.
-        queue<node*> q;
+        queue<ListNode*> q;
         // add first element in it.
         q.push(root);
         q.push(NULL);
         while(!q.empty()){
-            node* demo = q.front();
+            ListNode* demo = q.front();
             q.pop();
             if(demo == NULL){
                 cout<<endl;
@@ -73,15 +73,15 @@
 
     void reverse_traversal(node * root){
         // here we use stack for this by inputing the alll queue inside of it
-        queue<node*> q;
-        stack<node*> st;
+        queue<ListNode*> q;
+        stack<ListNode*> st;
         q.push(root);
         q.push(NULL);
         st.push(root);
         st.push(NULL);
         while(!q.empty()){
             // store the first node of queue.
-            node*demo = q.front();
+            ListNode*demo = q.front();
             q.pop();
             if (demo == NULL){
                 cout<<endl;
@@ -119,7 +119,7 @@
     }
 
     int main(){
-        node* root = NULL;
+        ListNode* root = NULL;
         createtree(root);
         cout<<"normal traversal"<<endl;
         normal_traversal(root);

@@ -10,8 +10,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this ->data = data;
         this ->right = NULL;
@@ -20,7 +20,7 @@ class Node{
 };
 
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data "<<endl;
     cin>> data;
@@ -41,17 +41,17 @@ Node* buildtree(Node* &root){
 }
 
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root == NULL){
         return;
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        Node* temp = q.front();
+        ListNode* temp = q.front();
         q.pop();
         if (temp == NULL){
             cout<<endl;
@@ -71,13 +71,13 @@ void print_tree(Node* root){
     }
 }
 
-Node* findparents(Node* root, unordered_map<Node*,Node*> &parents,int target){
-    Node* target_add = NULL;
-    queue<Node*> q;
+ListNode* findparents(ListNode* root, unordered_map<ListNode*,ListNode*> &parents,int target){
+    ListNode* target_add = NULL;
+    queue<ListNode*> q;
     q.push(root);
     parents[root] = NULL;
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo->data == target){
             target_add = demo;
@@ -95,11 +95,11 @@ Node* findparents(Node* root, unordered_map<Node*,Node*> &parents,int target){
     return target_add;
 }
 
-int time_to_burn(Node* add,unordered_map<Node*,Node*> parents){
+int time_to_burn(ListNode* add,unordered_map<ListNode*,ListNode*> parents){
 
-    queue<Node*> q; // for traversal
+    queue<ListNode*> q; // for traversal
 
-    unordered_map<Node*,bool> visited; // check for visited 
+    unordered_map<ListNode*,bool> visited; // check for visited 
     int time = 0;
     q.push(add);
     visited[add] = true;
@@ -108,7 +108,7 @@ int time_to_burn(Node* add,unordered_map<Node*,Node*> parents){
         int mysize = q.size();
         bool flag = false;
         for(int i =0;i<mysize;i++){
-            Node* front = q.front();
+            ListNode* front = q.front();
             q.pop();
             // check for left
             if (front->left && !visited[front->left]){
@@ -137,12 +137,12 @@ int time_to_burn(Node* add,unordered_map<Node*,Node*> parents){
     return time;
 
 }
-int minTime(Node* root,int target){
+int minTime(ListNode* root,int target){
     // find all nodes parent 
     // find target node addresss pointer
 
-    unordered_map<Node*,Node*> parents;
-    Node* add = findparents(root,parents,target);
+    unordered_map<ListNode*,ListNode*> parents;
+    ListNode* add = findparents(root,parents,target);
     
     // cout<<add->data<<endl;
     // start counting time
@@ -151,7 +151,7 @@ int minTime(Node* root,int target){
 
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     root = buildtree(root);
     print_tree(root);
     cout<<"enter the target from where you want to burn it "<<endl;

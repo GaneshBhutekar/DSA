@@ -9,8 +9,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         right = NULL;
@@ -25,17 +25,17 @@ class Node{
 
 
 
-void print(Node* root){
+void print(ListNode* root){
     if (root == NULL){
         return;
 
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -56,7 +56,7 @@ void print(Node* root){
         }
     }
 }
-Node* insert(Node* & root,int data){
+ListNode* insert(ListNode* & root,int data){
     if (root == NULL){
         root = new Node(data);
         return root;
@@ -74,7 +74,7 @@ Node* insert(Node* & root,int data){
 
 }
 
-void insertTree(Node* &root){
+void insertTree(ListNode* &root){
     int data;
     cout<<"enter the dta"<<endl;
     cin>>data;
@@ -85,7 +85,7 @@ void insertTree(Node* &root){
 
 }
 
-int inorder(Node* root,vector<Node*> &sorted){
+int inorder(ListNode* root,vector<ListNode*> &sorted){
     if (root == NULL){
         return 0;
     }
@@ -100,14 +100,14 @@ int inorder(Node* root,vector<Node*> &sorted){
     return right+left +1;
 }
 
-Node* balancingIt(vector<Node*> &sorted,int start,int end){
+ListNode* balancingIt(vector<ListNode*> &sorted,int start,int end){
     if (start > end){
         return NULL;
     }
 
     // create the root node here 
     int mid = start+(end-start)/2;
-    Node* top = sorted[mid];
+    ListNode* top = sorted[mid];
 
     // go to the left
     top->left = balancingIt(sorted,start,mid-1);
@@ -116,25 +116,25 @@ Node* balancingIt(vector<Node*> &sorted,int start,int end){
     return top;
 }
 
-Node* BalancedBst(Node* root){
+ListNode* BalancedBst(ListNode* root){
     if (root == NULL){
         return NULL;
     }
-    vector<Node*> sorted;
+    vector<ListNode*> sorted;
     int n = inorder(root,sorted);
 
     // after doiing this we have to recreate the tree from scratch using merge sort type
-    Node* top = balancingIt(sorted,0,n-1);
+    ListNode* top = balancingIt(sorted,0,n-1);
 
 
     return top;
 }
 int main(){
-    Node* root =  NULL;
+    ListNode* root =  NULL;
     insertTree(root);
     cout<<"UNBALANCED TREE "<<endl;
     print(root);
-    Node* ans = BalancedBst(root);
+    ListNode* ans = BalancedBst(root);
     cout<<"BALANCED TREE"<<endl;
     print(ans);
     // 50 30 70 20 35 60 80 5 28 34 43 68 25 -1

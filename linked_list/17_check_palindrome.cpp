@@ -21,7 +21,7 @@ void insertatHead(Node * &head,int data){
     head=temp;
 
 }
-void insertatTail(Node*&tail,int data){
+void insertatTail(ListNode*&tail,int data){
     Node * temp=new Node(data);
     tail->next=temp;
     tail=temp;
@@ -38,8 +38,8 @@ void print(Node * head){
 
 }
 
-int add_element(Node*head,vector<int> &array){
-    Node*temp=head;
+int add_element(ListNode*head,vector<int> &array){
+    ListNode*temp=head;
     int length=0;
     while(temp!=NULL){
         array.push_back(temp->data);
@@ -49,7 +49,7 @@ int add_element(Node*head,vector<int> &array){
     return length;
 
 }
-bool check_palindrome(Node* head){
+bool check_palindrome(ListNode* head){
     // traverse to store value in array;
     vector<int> array;
     int length=add_element(head,array);
@@ -65,8 +65,8 @@ bool check_palindrome(Node* head){
     return true;
 }
 
-int check_length(Node* head){
-    Node*temp=head;
+int check_length(ListNode* head){
+    ListNode*temp=head;
     int length=0;
     while(temp!=NULL){
         length++;
@@ -75,7 +75,7 @@ int check_length(Node* head){
     return length;
 
 }
-bool check_palindrome_approach2(Node*head){  // [1,3,1,3] not good approach 
+bool check_palindrome_approach2(ListNode*head){  // [1,3,1,3] not good approach 
     int length=check_length(head);
     int mid=0;
     if (length&1){
@@ -84,14 +84,14 @@ bool check_palindrome_approach2(Node*head){  // [1,3,1,3] not good approach
     else{
         mid=length/2;
     }
-    Node*temp=head;
+    ListNode*temp=head;
     int cnt=0;
     while(cnt!=mid){
         temp=temp->next;
         cnt++;
     }
     int total=0;
-    Node*start=head;
+    ListNode*start=head;
     while(temp!=NULL){
         total+=start->data;
         total-=temp->data;
@@ -108,9 +108,9 @@ bool check_palindrome_approach2(Node*head){  // [1,3,1,3] not good approach
 }
 
 
-Node* MidValue(Node*head){
-    Node*fast=head->next;
-    Node*slow=head;
+ListNode* MidValue(ListNode*head){
+    ListNode*fast=head->next;
+    ListNode*slow=head;
     while(fast!=NULL && fast->next != NULL){
         fast=fast->next->next;
         slow=slow->next;
@@ -118,10 +118,10 @@ Node* MidValue(Node*head){
     return slow;
 
 }
-Node* reverseit(Node* head ){
-    Node*prev=NULL;
-    Node*curr=head;
-    Node*forward=NULL;
+ListNode* reverseit(ListNode* head ){
+    ListNode*prev=NULL;
+    ListNode*curr=head;
+    ListNode*forward=NULL;
     while(curr!=NULL){
         forward=curr->next;
         curr->next=prev;
@@ -130,14 +130,14 @@ Node* reverseit(Node* head ){
     }
     return prev;
 }
-bool check_palindrome_approach_3(Node*head){
+bool check_palindrome_approach_3(ListNode*head){
     // find mid
-    Node* mid=MidValue(head);
+    ListNode* mid=MidValue(head);
     // reverse it from that mid.
-    Node*head1=head;
+    ListNode*head1=head;
     mid->next=reverseit(mid->next);
     //check palindrome
-    Node*head2=mid->next;
+    ListNode*head2=mid->next;
     bool ans=true;
     while(head2!=NULL){
         if (head1->data != head2->data){
@@ -154,9 +154,9 @@ bool check_palindrome_approach_3(Node*head){
 
 }
 int main(){
-    Node* node1 = new Node(1);
-    Node*head=node1;
-    Node*tail=node1;
+    ListNode* node1 = new Node(1);
+    ListNode*head=node1;
+    ListNode*tail=node1;
 
     insertatTail(tail,3);
     insertatTail(tail,2);
@@ -170,7 +170,7 @@ int main(){
     else{
         cout<<"it is not palindrome"<<endl;
     }
-    Node* mid=MidValue(head);
+    ListNode* mid=MidValue(head);
     cout<<mid->data<<endl;
 
 

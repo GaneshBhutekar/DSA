@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
 
     Node(int data){
         this ->data = data;
@@ -17,7 +17,7 @@ class Node{
 };
 
 
-Node* inserting(Node* root,int data){
+ListNode* inserting(ListNode* root,int data){
     if (root == NULL){
         root = new Node(data);
         return root;
@@ -35,16 +35,16 @@ Node* inserting(Node* root,int data){
 }
 
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root == NULL){
         return;
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* x = q.front();
+        ListNode* x = q.front();
         q.pop();
 
         if (x == NULL){
@@ -64,7 +64,7 @@ void print_tree(Node* root){
         }
     }
 }
-void insertBST(Node* &root){
+void insertBST(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>> data;
@@ -75,7 +75,7 @@ void insertBST(Node* &root){
 }
 
 
-int minimum(Node* root){
+int minimum(ListNode* root){
     if(root == NULL){
         return -1;
     }
@@ -86,7 +86,7 @@ int minimum(Node* root){
     return minimum(root->left);
 }
 
-int maximum(Node* root){
+int maximum(ListNode* root){
     if (root == NULL){
         return -1;
     }
@@ -98,7 +98,7 @@ int maximum(Node* root){
 }
 
 
-int inordersuccesor(Node* root,int data){
+int inordersuccesor(ListNode* root,int data){
     if (root == NULL){
         return -1;
     }
@@ -124,7 +124,7 @@ int inordersuccesor(Node* root,int data){
     return -1;
 }
 
-int inorderpredecer(Node* root,int data){
+int inorderpredecer(ListNode* root,int data){
     if (root == NULL){
         return -1;
     }
@@ -152,7 +152,7 @@ int inorderpredecer(Node* root,int data){
     return -1;
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     insertBST(root);
     print_tree(root);
     // 21 12 7 20 26 23 8 3 28 27 -1 

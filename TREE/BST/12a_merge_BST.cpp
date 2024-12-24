@@ -7,11 +7,11 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
-        Node* left = NULL;
-        Node* right = NULL;
+        ListNode* left = NULL;
+        ListNode* right = NULL;
         this->data = data;
     }
 
@@ -20,7 +20,7 @@ class Node{
 
 
 // create the treee
-Node* createtree(Node* root){
+ListNode* createtree(ListNode* root){
     // creaye the node
     int data;
     cout<<"enter the data"<<endl;
@@ -44,14 +44,14 @@ Node* createtree(Node* root){
 }
 
 
-void printtree(Node* root){
+void printtree(ListNode* root){
     // level order
-    queue<Node*> q;
+    queue<ListNode*> q;
 
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo==NULL){
             cout<<endl;
@@ -72,7 +72,7 @@ void printtree(Node* root){
 }
 
 
-void inorder(Node* root,vector<int> &arr){
+void inorder(ListNode* root,vector<int> &arr){
 
     if (root == NULL){
         return;
@@ -116,14 +116,14 @@ vector<int> mergeArray(vector<int> in1,vector<int> in2,int n1,int n2){
 }
 
 
-Node* solve(vector<int> merged,int start,int end){
+ListNode* solve(vector<int> merged,int start,int end){
     if (start>end){
         return NULL;
     }
 
     int mid = (start+end)/2;
 
-    Node* root = new Node(merged[mid]);
+    ListNode* root = new Node(merged[mid]);
 
     // go for the left and then go for the right
     root->left = solve(merged,start,mid-1);
@@ -133,7 +133,7 @@ Node* solve(vector<int> merged,int start,int end){
     return root;
 
 }
-Node* mergeTree(Node* root1,Node* root2){
+ListNode* mergeTree(ListNode* root1,ListNode* root2){
     // first find the inorder of the tree
 
     vector<int> in1;
@@ -147,18 +147,18 @@ Node* mergeTree(Node* root1,Node* root2){
     vector<int> merged = mergeArray(in1,in2,n1,n2);
 
     // now we have merged one also 
-    Node* root = solve(merged,0,n1+n2-1);
+    ListNode* root = solve(merged,0,n1+n2-1);
     return root;
 }
 
 
 int main(){
     cout<<"enter the data for root1"<<endl;
-    Node* root1 = NULL;
+    ListNode* root1 = NULL;
     root1 = createtree(root1);
 
     cout<<"enter for the root2"<<endl;
-    Node* root2 =nullptr;
+    ListNode* root2 =nullptr;
     root2= createtree(root2);
 
     printtree(root1);
@@ -167,7 +167,7 @@ int main(){
     // 18 9 2 -1 6 -1 -1 12 -1 14 -1 -1 19 -1 -1
 
     cout<<"MERGING THIS BOTH TREEE"<<endl;
-    Node* ans = mergeTree(root1,root2);
+    ListNode* ans = mergeTree(root1,root2);
     printtree(ans);
 
 

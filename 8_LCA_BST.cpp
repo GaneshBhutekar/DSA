@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         this->right = NULL;
@@ -18,7 +18,7 @@ class Node{
 
 
 // input in the binary search tree
-Node* insertBST(Node* &root,int data){
+ListNode* insertBST(ListNode* &root,int data){
     if(root == NULL){
         // we came where to put the data.
         root = new Node(data);
@@ -38,15 +38,15 @@ Node* insertBST(Node* &root,int data){
 }
 
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root ==NULL){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -67,7 +67,7 @@ void print_tree(Node* root){
 
 }
 
-int LCA(Node* root,int n1,int n2){
+int LCA(ListNode* root,int n1,int n2){
     if (root == NULL){
         return -1;
     }
@@ -89,8 +89,8 @@ int LCA(Node* root,int n1,int n2){
 }
 
 
-int iterative_LCA(Node* root,int n1,int n2){
-    Node* temp = root;
+int iterative_LCA(ListNode* root,int n1,int n2){
+    ListNode* temp = root;
 
     while(temp != NULL){
 
@@ -109,7 +109,7 @@ int iterative_LCA(Node* root,int n1,int n2){
     return -1;
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     cout<<"enter the data"<<endl;
     int data;
     cin>>data;

@@ -5,8 +5,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* down;
+    ListNode* right;
+    ListNode* down;
     Node(int data){
         this ->data = data;
         this ->right= NULL;
@@ -16,15 +16,15 @@ class Node{
 };
 
 
-Node* constructLinkedLinkedMatrix(vector<vector<int>> & mat){
+ListNode* constructLinkedLinkedMatrix(vector<vector<int>> & mat){
     // code here
     int row = mat.size();
     int col = mat[0].size();
-    Node* head = new Node(mat[0][0]);
-    Node* temp = head;
+    ListNode* head = new Node(mat[0][0]);
+    ListNode* temp = head;
 
     for(int i =1;i<col;i++){
-        Node* node = new Node(mat[0][i]);
+        ListNode* node = new Node(mat[0][i]);
         temp->right = node;
         temp = node;
     }
@@ -32,10 +32,10 @@ Node* constructLinkedLinkedMatrix(vector<vector<int>> & mat){
 
 
     // first row already done
-    Node* point = head;
+    ListNode* point = head;
     temp = head;
     for(int i = 1;i<row;i++){
-        Node* x = new Node(mat[i][0]);
+        ListNode* x = new Node(mat[i][0]);
         temp = point;
         temp->down = x;
         for(int j = 1;j<col;j++){
@@ -58,7 +58,7 @@ int main(){
         {3,4}
     };
 
-    Node* head = constructLinkedLinkedMatrix(mat);
+    ListNode* head = constructLinkedLinkedMatrix(mat);
 
     // cout<<head->down->down->right->right->data<<endl;
     cout<<head->data<<endl;

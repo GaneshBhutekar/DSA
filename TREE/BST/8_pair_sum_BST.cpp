@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         right = NULL;
@@ -23,17 +23,17 @@ class Node{
 
 
 
-void print(Node* root){
+void print(ListNode* root){
     if (root == NULL){
         return;
 
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -54,7 +54,7 @@ void print(Node* root){
         }
     }
 }
-Node* insert(Node* & root,int data){
+ListNode* insert(ListNode* & root,int data){
     if (root == NULL){
         root = new Node(data);
         return root;
@@ -72,7 +72,7 @@ Node* insert(Node* & root,int data){
 
 }
 
-void insertTree(Node* &root){
+void insertTree(ListNode* &root){
     int data;
     cout<<"enter the dta"<<endl;
     cin>>data;
@@ -84,7 +84,7 @@ void insertTree(Node* &root){
 }
 
 
-int inorder(Node* root,vector<int> &arr){
+int inorder(ListNode* root,vector<int> &arr){
     if (root == NULL){
         return 0;
     }
@@ -96,7 +96,7 @@ int inorder(Node* root,vector<int> &arr){
     return left + right +1;
 }
 
-bool check_pair(Node* root,int sum){
+bool check_pair(ListNode* root,int sum){
     vector<int> arr;
     int n = inorder(root,arr);
 
@@ -120,7 +120,7 @@ bool check_pair(Node* root,int sum){
 
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     insertTree(root);
     print(root);
     // 10 6 12 2 8 11 15 -1

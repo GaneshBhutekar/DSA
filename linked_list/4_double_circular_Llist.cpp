@@ -5,8 +5,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* next;
-    Node*prev;
+    ListNode* next;
+    ListNode*prev;
     Node(int data){
         this -> prev=NULL;
         this -> data = data ;
@@ -17,7 +17,7 @@ class Node{
         cout<<"deleting the data "<<this-> data <<endl;
     }
 };
-void insertionNode(Node*  &tail,int element,int data){
+void insertionNode(ListNode*  &tail,int element,int data){
     // if the list is empty
     if (tail==NULL){
         Node *temp = new Node(data);
@@ -43,12 +43,12 @@ void insertionNode(Node*  &tail,int element,int data){
     }
 }
 
-void print(Node* &tail){
+void print(ListNode* &tail){
     if(tail==NULL){
         cout<<"empty hain"<<endl;
         return;
     }
-    Node* temp=tail; // to iterate 
+    ListNode* temp=tail; // to iterate 
     cout<<temp->data<<" ";
     temp=temp->next;
     while(temp != tail){
@@ -58,7 +58,7 @@ void print(Node* &tail){
     cout<<endl;
 }
 
-void deletion(Node* &tail,int element){
+void deletion(ListNode* &tail,int element){
     if (tail==NULL){
         cout<<"Pahle kuch daal to list main EMPTY hain"<<endl;
         

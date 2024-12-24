@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         this->right = NULL;
@@ -18,7 +18,7 @@ class Node{
 
 
 // input in the binary search tree
-Node* insertBST(Node* &root,int data){
+ListNode* insertBST(ListNode* &root,int data){
     if(root == NULL){
         // we came where to put the data.
         root = new Node(data);
@@ -38,15 +38,15 @@ Node* insertBST(Node* &root,int data){
 }
 
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root ==NULL){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -71,9 +71,9 @@ void print_tree(Node* root){
 
 
 
-pair<int,int> predecessorSuccessor(Node* root,int key){
+pair<int,int> predecessorSuccessor(ListNode* root,int key){
     // just find the key
-    Node* temp = root;
+    ListNode* temp = root;
 
     // start to find the key 
     int prec = -1;
@@ -99,7 +99,7 @@ pair<int,int> predecessorSuccessor(Node* root,int key){
     // now find the pred (one smaller in BST)
     // pred is always left side larger value or if it is null then another smaller which will be his parent  from where it turn right.
 
-    Node* P = temp->left;
+    ListNode* P = temp->left;
     while(P != NULL){
         // travere till we get most biggest value in right side of the temp.
         prec = P->data;
@@ -112,7 +112,7 @@ pair<int,int> predecessorSuccessor(Node* root,int key){
     //now find the sucessor it will be next of temp in inorder traversal we can found it by most smallest in right side of the temp 
     // OR from where it turn left last time because if there is not larger value than the next larger value will be that element 
     // from where it turn left last time
-    Node* S = temp->right;
+    ListNode* S = temp->right;
     while(S != NULL){
         suc = S->data;
 

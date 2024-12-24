@@ -31,8 +31,8 @@ void print(Node * &head){
     cout<<endl;
 }
 
-int getlength(Node* &head){
-    Node*temp=head;
+int getlength(ListNode* &head){
+    ListNode*temp=head;
     int length=0;
     while(temp!=NULL){
         temp=temp->next;
@@ -41,9 +41,9 @@ int getlength(Node* &head){
     return length;
 }
 
-void insertatHead(Node* &head,Node * &tail,int data){
+void insertatHead(ListNode* &head,Node * &tail,int data){
     if (head==NULL){ // if head is empty (no node) then create first node and set it head
-        Node* temp=new Node(data);
+        ListNode* temp=new Node(data);
         head=temp;
         tail=temp; 
     }
@@ -56,15 +56,15 @@ void insertatHead(Node* &head,Node * &tail,int data){
     }
 }
 
-void insertatTail(Node* &head,Node* &tail,int data){
+void insertatTail(ListNode* &head,ListNode* &tail,int data){
     if (tail==NULL){
-        Node*temp = new Node(data);
+        ListNode*temp = new Node(data);
         tail=temp;
         head=temp;
     }
 
     else{
-        Node* temp = new Node(data);
+        ListNode* temp = new Node(data);
         temp->prev = tail;
         tail->next=temp;
         tail = temp;
@@ -106,7 +106,7 @@ void insertatPosition(Node * &tail,Node * &head,int data,int position){
 
 }
 
-void deletion(Node * &head,Node* &tail,int position){
+void deletion(Node * &head,ListNode* &tail,int position){
     if (position==1){
         Node * temp = head;
         head=temp->next;
@@ -141,7 +141,7 @@ void deletion(Node * &head,Node* &tail,int position){
 
 int main(){
     // let's say you started empty
-    Node*head = NULL;
+    ListNode*head = NULL;
     Node * tail = NULL;
     
     // new node

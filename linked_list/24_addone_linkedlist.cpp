@@ -3,7 +3,7 @@ using namespace std;
 class Node {
     public:
     int data ;
-    Node*next;
+    ListNode*next;
     Node(int data){
         this -> data = data;
         this -> next = NULL;
@@ -12,29 +12,29 @@ class Node {
 
 };
 
-void insertathead(Node*&head,int data){
-    Node* temp= new Node(data);
+void insertathead(ListNode*&head,int data){
+    ListNode* temp= new Node(data);
     temp->next = head;
     head=temp;
     
 }
-void insertattail(Node* &tail,int data){
-    Node* temp = new Node(data);
+void insertattail(ListNode* &tail,int data){
+    ListNode* temp = new Node(data);
     tail->next = temp;
     tail=temp;
 }
-void print(Node* head){
-    Node*temp = head;
+void print(ListNode* head){
+    ListNode*temp = head;
     while(temp!= NULL){
         cout<<temp->data<<" ";
         temp=temp->next;
     }
     cout<<endl;
 }
-Node* reverseit(Node* head){
-    Node* curr=head;
-    Node* prev = NULL;
-    Node* forw = NULL;
+ListNode* reverseit(ListNode* head){
+    ListNode* curr=head;
+    ListNode* prev = NULL;
+    ListNode* forw = NULL;
     
     while(curr!=NULL){
         forw=curr->next;
@@ -46,11 +46,11 @@ Node* reverseit(Node* head){
 }
 
 
-Node* addOne(Node* head){
+ListNode* addOne(ListNode* head){
     head=reverseit(head);
     int carry=1;
-    Node*temp = head;
-    Node*prev=NULL;
+    ListNode*temp = head;
+    ListNode*prev=NULL;
     while(temp!=NULL){
         int sum = carry + temp->data;
         int ans = sum%10;
@@ -60,7 +60,7 @@ Node* addOne(Node* head){
         temp=temp->next;
     }
     if (carry != 0){
-        Node* newnode=new Node(carry);
+        ListNode* newnode=new Node(carry);
         prev->next = newnode;
     }
     head=reverseit(head);
@@ -72,9 +72,9 @@ Node* addOne(Node* head){
 
 
 int main(){
-    Node* newnode= new Node(9);
-    Node* head= newnode;
-    Node* tail = newnode;
+    ListNode* newnode= new Node(9);
+    ListNode* head= newnode;
+    ListNode* tail = newnode;
 
     insertattail(tail,9);
     insertattail(tail,9);

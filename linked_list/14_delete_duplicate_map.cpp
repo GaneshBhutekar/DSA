@@ -20,7 +20,7 @@ void insertatHead(Node * &head,int data){
     head=temp;
 
 }
-void insertatTail(Node*&tail,int data){
+void insertatTail(ListNode*&tail,int data){
     Node * temp=new Node(data);
     tail->next=temp;
     tail=temp;
@@ -36,16 +36,16 @@ void print(Node * head){
     cout<<endl;
 
 }
-void delete_duplicates(Node*&head){
+void delete_duplicates(ListNode*&head){
     if (head==NULL){
         return;
     }
     map<int,bool> taken;
-    Node*temp=head;
+    ListNode*temp=head;
     taken[temp->data]=true;
     while(temp!=NULL && temp->next!=NULL){
         if (taken[temp->next->data] == true){
-            Node*todelete=temp->next;
+            ListNode*todelete=temp->next;
             temp->next=temp->next->next;
             todelete->next=NULL;
             delete todelete;
@@ -58,9 +58,9 @@ void delete_duplicates(Node*&head){
 }
 
 int main(){
-    Node*node=new Node(10);
-    Node*tail=node;
-    Node*head=node;
+    ListNode*node=new Node(10);
+    ListNode*tail=node;
+    ListNode*head=node;
     insertatTail(tail,5);
     insertatTail(tail,7);
     insertatTail(tail,3);

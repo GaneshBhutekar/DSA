@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this->data = data;
         this->right = NULL;
@@ -16,7 +16,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node*& root){
+ListNode* buildtree(ListNode*& root){
     int data;
     cout<<"enter the element: "<<endl;
     cin>>data; 
@@ -44,16 +44,16 @@ void print_array(vector<int> arr){
 }
 
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root == NULL){
         return;
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -74,7 +74,7 @@ void print_tree(Node* root){
 }
 
 
-vector<int> right_view(Node* root){
+vector<int> right_view(ListNode* root){
     vector<int> ans;
     if (root == NULL){
         return ans;
@@ -83,7 +83,7 @@ vector<int> right_view(Node* root){
     // to store.
     map<int,int> store ;
     // to queue
-    queue<pair<Node*,int>> q;
+    queue<pair<ListNode*,int>> q;
 
     //push first element.
     q.push({root,0});
@@ -111,7 +111,7 @@ vector<int> right_view(Node* root){
 }
 
 // toptimized version of right view.
-void right_view_2(Node* root,vector<int> & ans , int level){
+void right_view_2(ListNode* root,vector<int> & ans , int level){
     if (root == NULL){
         return;
     }
@@ -129,7 +129,7 @@ void right_view_2(Node* root,vector<int> & ans , int level){
 
 }
 
-vector<int> for_right(Node* root){
+vector<int> for_right(ListNode* root){
     vector<int> ans ;
     int level = 0;
     right_view_2(root,ans,0);
@@ -138,7 +138,7 @@ vector<int> for_right(Node* root){
 
 
 
-void solve(Node* root,vector<int> &ans,int level){
+void solve(ListNode* root,vector<int> &ans,int level){
     if (root == NULL){
         return;
     }
@@ -156,7 +156,7 @@ void solve(Node* root,vector<int> &ans,int level){
     solve(root->right,ans,level+1);
 }
 
-vector<int> left_view(Node* root){
+vector<int> left_view(ListNode* root){
     vector<int> ans;
     if (root == NULL){
         return ans;
@@ -168,7 +168,7 @@ vector<int> left_view(Node* root){
 int main(){
     // 1 2 4 -1 8 -1 -1 5 -1 -1 3 6 -1 -1 7 -1 -1
     // 1 2 4 -1 8 -1 -1 5 -1 -1 3 6 -1 -1 7 9 -1 10 -1 -1 16 -1 11 -1 -1 
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
 

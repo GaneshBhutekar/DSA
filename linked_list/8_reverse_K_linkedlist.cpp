@@ -3,7 +3,7 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* next; // to stire next node address
+    ListNode* next; // to stire next node address
     Node(int data){
         this->data=data;
         this->next=NULL;
@@ -18,12 +18,12 @@ class Node{
 };
 
 void insertionatHead(Node * &head,int data){
-    Node* temp= new Node(data);
+    ListNode* temp= new Node(data);
     temp->next=head;
     head=temp;
 }
 void insertionatTail(Node * &tail,int data){
-    Node* temp = new Node(data);
+    ListNode* temp = new Node(data);
     tail->next= temp;
     tail=temp;
 
@@ -43,7 +43,7 @@ Node * reverse_in_group(Node * &head,int group){
         return NULL;
     }
     Node * curr= head;
-    Node* next =NULL;
+    ListNode* next =NULL;
     Node * prev = NULL;
     int cnt=0;
     while(cnt<group && curr != NULL){

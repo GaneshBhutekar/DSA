@@ -6,7 +6,7 @@ using namespace std;
 // create class to add in the inner node
 class InnerNode{
     public:
-    InnerNode* next;
+    InnerListNode* next;
     int data;
     InnerNode(int data){
         this->data = data;
@@ -18,9 +18,9 @@ class InnerNode{
 class OuterNode{
     public:
     // here we have to make the new linked list of the innerNode type okay and we can access it by the OuterNode object
-    InnerNode* head;
-    InnerNode* tail;
-    OuterNode* next;
+    InnerListNode* head;
+    InnerListNode* tail;
+    OuterListNode* next;
     int cnt =0;
     OuterNode(){
         this->head = NULL;
@@ -30,12 +30,12 @@ class OuterNode{
 };
 
 
-void printList(OuterNode* head,OuterNode* tail){
+void printList(OuterListNode* head,OuterListNode* tail){
     
-    OuterNode* temp = head;
+    OuterListNode* temp = head;
     while(temp != NULL){
         // traverse inside circular list
-        InnerNode* innertemp = temp->tail;
+        InnerListNode* innertemp = temp->tail;
         do{
             cout<<innertemp->data<<" ";
             innertemp = innertemp->next;
@@ -46,7 +46,7 @@ void printList(OuterNode* head,OuterNode* tail){
 }
 
 
-void Inserting(OuterNode* &head,OuterNode* &tail,int limit,int data){
+void Inserting(OuterListNode* &head,OuterListNode* &tail,int limit,int data){
     if (head == NULL){
         // not inserted anything 
         // create first outer node
@@ -66,7 +66,7 @@ void Inserting(OuterNode* &head,OuterNode* &tail,int limit,int data){
     // check that current tail of outer node is filled or not 
     if (tail->cnt == limit){
         // time tp create new outer node
-        OuterNode* newnode = new OuterNode();
+        OuterListNode* newnode = new OuterNode();
         tail->next = newnode;
         tail = newnode;
 
@@ -78,7 +78,7 @@ void Inserting(OuterNode* &head,OuterNode* &tail,int limit,int data){
     }
     else{
         // create a new node there
-        InnerNode* temp = new InnerNode(data);
+        InnerListNode* temp = new InnerNode(data);
         temp->next = tail->tail;
         tail->tail = temp;
         tail->head->next = tail->tail;
@@ -87,7 +87,7 @@ void Inserting(OuterNode* &head,OuterNode* &tail,int limit,int data){
 
 }
 
-void insertIntoList(OuterNode* &head,OuterNode* &tail,int limit){
+void insertIntoList(OuterListNode* &head,OuterListNode* &tail,int limit){
     cout<<"enter the data "<<endl;
     int data;
     cin>>data;
@@ -97,11 +97,11 @@ void insertIntoList(OuterNode* &head,OuterNode* &tail,int limit){
         cin>>data;
     }
 }
-void insertBetween(OuterNode* &head,OuterNode* &tail,int data,int key,int limit){
+void insertBetween(OuterListNode* &head,OuterListNode* &tail,int data,int key,int limit){
     
     // find the node in which this data will insertted
     // starting from the head
-    OuterNode* temp = head;
+    OuterListNode* temp = head;
     while(temp->tail->data < key){
         // move till the tail value of innernode is actually larger than key
         temp=temp->next;
@@ -110,14 +110,14 @@ void insertBetween(OuterNode* &head,OuterNode* &tail,int data,int key,int limit)
     // we have temp now.
     // add the data in it.
     // find the key which will be previous of inserting key.
-    InnerNode* innertemp = temp->tail;
+    InnerListNode* innertemp = temp->tail;
     while(innertemp->data != key){
         innertemp = innertemp->next;
     }
 
     // we found the key!!!
     // create the innernode
-    InnerNode* newnode = new InnerNode(data);
+    InnerListNode* newnode = new InnerNode(data);
     newnode->next = innertemp->next;
     innertemp->next = newnode;
     temp->cnt ++;
@@ -130,7 +130,7 @@ void insertBetween(OuterNode* &head,OuterNode* &tail,int data,int key,int limit)
     }
 
     // stiore the node
-    InnerNode* extra = temp->tail;
+    InnerListNode* extra = temp->tail;
     int remain = extra->data;
     temp -> tail = temp->tail->next;
     temp->head->next = temp->tail;
@@ -146,11 +146,11 @@ void insertBetween(OuterNode* &head,OuterNode* &tail,int data,int key,int limit)
     // move untill the cnt is full or it is not null.
     while(temp != NULL && temp -> cnt >= limit){
         // add the remain into the head and delete the tail for future
-        InnerNode* node = new InnerNode(remain);
+        InnerListNode* node = new InnerNode(remain);
         temp->head->next = node;
         node->next = temp->tail->next;
 
-        InnerNode* extra = temp->tail;
+        InnerListNode* extra = temp->tail;
         remain = temp->tail->data;
         temp->tail = temp->tail->next;
         extra -> next = NULL;
@@ -174,7 +174,7 @@ int main(){
     int limit = sqrt(n);
     cout<<"limit is "<<limit<<endl;
     OuterNode *head = NULL;
-    OuterNode*tail = NULL;
+    OuterListNode*tail = NULL;
     insertIntoList(head,tail,limit);
     printList(head,tail);
     cout<<"insert one data here"<<endl;

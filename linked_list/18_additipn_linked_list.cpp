@@ -21,7 +21,7 @@ void insertatHead(Node * &head,int data){
     head=temp;
 
 }
-void insertatTail(Node*&tail,int data){
+void insertatTail(ListNode*&tail,int data){
     Node * temp=new Node(data);
 
     tail->next=temp;
@@ -39,10 +39,10 @@ void print(Node * head){
 
 }
 
-Node* reversit(Node*head){
-    Node*curr=head;
-    Node* prev=NULL;
-    Node* forward=NULL;
+ListNode* reversit(ListNode*head){
+    ListNode*curr=head;
+    ListNode* prev=NULL;
+    ListNode* forward=NULL;
     while(curr!=NULL){
         forward=curr->next;
         curr->next=prev;
@@ -53,7 +53,7 @@ Node* reversit(Node*head){
     return prev;
 }
 
-void insertnewnode(Node*&head,Node*&tail,int data){
+void insertnewnode(ListNode*&head,ListNode*&tail,int data){
     Node * temp=new Node(data);
     if (head==NULL){
         head=temp;
@@ -64,7 +64,7 @@ void insertnewnode(Node*&head,Node*&tail,int data){
     tail=temp;
     }
 }
-Node*  addition(Node*head1,Node*head2){  
+ListNode*  addition(ListNode*head1,ListNode*head2){  
     if (head1==NULL && head2==NULL){
         return NULL;
     }
@@ -76,10 +76,10 @@ Node*  addition(Node*head1,Node*head2){
     }
 
     // reverse the both array....
-    Node*start1=reversit(head1);
-    Node*start2=reversit(head2);
-    Node*head=NULL;
-    Node*tail=NULL;
+    ListNode*start1=reversit(head1);
+    ListNode*start2=reversit(head2);
+    ListNode*head=NULL;
+    ListNode*tail=NULL;
     insertnewnode(head,tail,-1);
     
     
@@ -122,7 +122,7 @@ Node*  addition(Node*head1,Node*head2){
 }
 
 
-Node* generic_addition(Node*head1,Node*head2){
+ListNode* generic_addition(ListNode*head1,ListNode*head2){
     if (head1==NULL && head2==NULL){
         return NULL;
     }
@@ -134,12 +134,12 @@ Node* generic_addition(Node*head1,Node*head2){
     }
 
     // reverse the lists
-    Node* start1=reversit(head1);
-    Node* start2=reversit(head2);
+    ListNode* start1=reversit(head1);
+    ListNode* start2=reversit(head2);
     
     // answer list
-    Node*head=NULL;
-    Node*tail=NULL;
+    ListNode*head=NULL;
+    ListNode*tail=NULL;
 
     insertnewnode(head,tail,0);
     int carry = 0;
@@ -179,22 +179,22 @@ Node* generic_addition(Node*head1,Node*head2){
 
 
 int main(){
-    Node*node1=new Node(9);
-    Node*head1=node1;
-    Node*tail1=node1;
+    ListNode*node1=new Node(9);
+    ListNode*head1=node1;
+    ListNode*tail1=node1;
     insertatTail(tail1,8);
     insertatTail(tail1,7);
     insertatTail(tail1,5);
     
-    Node*node2=new Node(6);
+    ListNode*node2=new Node(6);
 
-    Node*head2=node2;
-    Node*tail2=node2;
+    ListNode*head2=node2;
+    ListNode*tail2=node2;
     insertatTail(tail2,3);
     insertatTail(tail2,1);
     print(head1);
     print(head2);
 
-    Node*head= generic_addition(head1,head2);
+    ListNode*head= generic_addition(head1,head2);
     print(head);
 }

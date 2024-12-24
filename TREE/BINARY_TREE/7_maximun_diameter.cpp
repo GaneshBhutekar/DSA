@@ -8,8 +8,8 @@ using namespace std;
 class node{
     public:
     int data;
-    node* right;
-    node* left;
+    ListNode* right;
+    ListNode* left;
     node(int data){
         this->data = data;
         this-> right = NULL;
@@ -20,7 +20,7 @@ class node{
 
 };
 
-node* buildtree(node*& root){
+ListNode* buildtree(ListNode*& root){
     int data;
     cout<<"enter the data "<<endl;
     cin>>data;
@@ -40,13 +40,13 @@ node* buildtree(node*& root){
     
 }
 
-void print_tree(node* root){
-    queue<node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        node* temp = q.front();
+        ListNode* temp = q.front();
         q.pop();
 
         if (temp == NULL){
@@ -67,7 +67,7 @@ void print_tree(node* root){
     }
 }
 
-int solve(node* root, int & large_diameter){
+int solve(ListNode* root, int & large_diameter){
 
     if (root == NULL){
         return 0;
@@ -93,7 +93,7 @@ int solve(node* root, int & large_diameter){
     }
 }
 
-int find_diameter(node* root){
+int find_diameter(ListNode* root){
     int large_diameter = 0;
     solve(root,large_diameter);
     return large_diameter;
@@ -106,7 +106,7 @@ int main(){
     // 1 2 4 -1 -1 5 7 -1 -1 -1 3 8 -1 9 -1 -1 6 -1 -1 
 
     // 1 2 4 -1 -1 5 7 -1 -1 -1 
-    node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
     int ans = find_diameter(root);

@@ -4,8 +4,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this->data = data;
         left = NULL;
@@ -13,7 +13,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -32,12 +32,12 @@ Node* buildtree(Node* &root){
 
 }
 
-void print_tree(Node* root){
-    queue<Node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -58,7 +58,7 @@ void print_tree(Node* root){
     }
 }
 
-Node* solve(Node* root, int &k,int node){
+ListNode* solve(ListNode* root, int &k,int node){
     if (root == NULL){
         return  NULL;
     }
@@ -68,8 +68,8 @@ Node* solve(Node* root, int &k,int node){
         return root;
     }
 
-    Node* left = solve(root->left,k,node);
-    Node* right = solve(root->right,k,node);
+    ListNode* left = solve(root->left,k,node);
+    ListNode* right = solve(root->right,k,node);
 
     if (left != NULL && right == NULL){
         k--;
@@ -92,8 +92,8 @@ Node* solve(Node* root, int &k,int node){
     return NULL;
 }
 
-int KthAncestor(Node* root,int k, int node){
-    Node* ans = solve(root,k,node);
+int KthAncestor(ListNode* root,int k, int node){
+    ListNode* ans = solve(root,k,node);
 
     // there is consition if ans is same as node so it did not find the ancestor at k position.
     if (ans == NULL && ans->data == node){
@@ -103,7 +103,7 @@ int KthAncestor(Node* root,int k, int node){
 }
 
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
     cout<<"enter k and node value"<<endl;

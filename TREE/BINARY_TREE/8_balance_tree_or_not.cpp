@@ -7,8 +7,8 @@ using namespace std;
 class node{
     public: 
     int data;
-    node* right;
-    node* left;
+    ListNode* right;
+    ListNode* left;
     node(int data){
         this->data  = data;
         this -> right = NULL;
@@ -16,7 +16,7 @@ class node{
     }
 };
 
-node* create_tree(node* root){
+ListNode* create_tree(ListNode* root){
     int data;
     cout<<"enter the data "<<endl;
     cin>> data;
@@ -37,7 +37,7 @@ node* create_tree(node* root){
 }
 
 
-int solve(node* root,bool &status){
+int solve(ListNode* root,bool &status){
     if (root == NULL){
         return 0;
     }
@@ -61,18 +61,18 @@ int solve(node* root,bool &status){
 
 }
 
-bool balance_tree(node* root){
+bool balance_tree(ListNode* root){
     bool status = true;
     solve(root,status);
     return status;
 }
-void print_tree(node* root){
-    queue<node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        node* temp  = q.front();
+        ListNode* temp  = q.front();
         q.pop();
 
         if (temp == NULL){
@@ -98,7 +98,7 @@ int main(){
     // 1 2 4 -1 -1 5 6 -1 -1 -1 3 4 -1 -1 -1
 
     // 1 2 4 -1 5 -1 -1 -1 3 -1 -1 
-    node* root = NULL;
+    ListNode* root = NULL;
     root = create_tree(root);
     print_tree(root);
 

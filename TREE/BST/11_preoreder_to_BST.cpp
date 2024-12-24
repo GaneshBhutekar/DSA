@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         right = NULL;
         this->data = data;
@@ -17,15 +17,15 @@ class Node{
 
 
 
-void print(Node* root){
+void print(ListNode* root){
     if (root == NULL){
         return;
     }
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* temp = q.front();
+        ListNode* temp = q.front();
         q.pop();
 
         if (temp == NULL){
@@ -45,7 +45,7 @@ void print(Node* root){
         }
     }
 }
-Node* construct(vector<int> &preorder,int &index,int n,int max){
+ListNode* construct(vector<int> &preorder,int &index,int n,int max){
 
     if(index >= n){
         return NULL;
@@ -57,7 +57,7 @@ Node* construct(vector<int> &preorder,int &index,int n,int max){
     }
 
     // create the node here
-    Node* root = new Node(preorder[index]);
+    ListNode* root = new Node(preorder[index]);
 
     // move to the left 
     index++;
@@ -67,16 +67,16 @@ Node* construct(vector<int> &preorder,int &index,int n,int max){
     return root;
 }
 
-Node* makeTree(vector<int> preorder){
+ListNode* makeTree(vector<int> preorder){
     int index =0;
     int n = preorder.size();
     // pair<int,int> range= {INT_MIN,INT_MAX};
-    Node* root = construct(preorder,index,n,INT_MAX);
+    ListNode* root = construct(preorder,index,n,INT_MAX);
     return root;
 }
 int main(){
     vector<int> preorder = {20,10,5,15,13,35,30,42};
-    Node* root = makeTree(preorder);
+    ListNode* root = makeTree(preorder);
     print(root);
 
 

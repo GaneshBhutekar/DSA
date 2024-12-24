@@ -4,8 +4,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this->data = data;
         left = NULL;
@@ -13,7 +13,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -32,12 +32,12 @@ Node* buildtree(Node* &root){
 
 }
 
-void print_tree(Node* root){
-    queue<Node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -59,7 +59,7 @@ void print_tree(Node* root){
 }
 
 
-void solve(Node* root, int node,bool &found,vector<int> &ancestors){
+void solve(ListNode* root, int node,bool &found,vector<int> &ancestors){
     if (root == NULL){
         return;
     }
@@ -85,7 +85,7 @@ void solve(Node* root, int node,bool &found,vector<int> &ancestors){
 
 }
 
-int KthAncestor(Node* root , int k,int node){
+int KthAncestor(ListNode* root , int k,int node){
     if (k == 0){
         return -1;
     }
@@ -101,7 +101,7 @@ int KthAncestor(Node* root , int k,int node){
 
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     int k ;
     int node;
     buildtree(root);

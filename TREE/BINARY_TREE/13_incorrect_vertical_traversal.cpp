@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this ->data = data;
         this ->right = NULL;
@@ -43,7 +43,7 @@ class stacks{
 };
 
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data "<<endl;
     cin>> data;
@@ -64,13 +64,13 @@ Node* buildtree(Node* &root){
 }
 
 
-void print(Node* root){
-    queue<Node*> q;
+void print(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        Node* temp  = q.front();
+        ListNode* temp  = q.front();
         q.pop();
 
         if (temp == NULL){
@@ -104,7 +104,7 @@ void print(Node* root){
 
 
 
-int count_nodes(Node* root){
+int count_nodes(ListNode* root){
     //in order way
 
     if (root == NULL ){
@@ -116,7 +116,7 @@ int count_nodes(Node* root){
 
 }
 
-int left_nodes(Node* root){
+int left_nodes(ListNode* root){
     if (root == NULL){
         return 0;
     }
@@ -125,7 +125,7 @@ int left_nodes(Node* root){
     return count+1;
 }
 
-int right_nodes(Node* root){
+int right_nodes(ListNode* root){
     if (root == NULL){
         return 0;
     }
@@ -133,7 +133,7 @@ int right_nodes(Node* root){
     return count+1;
 }
 
-void RLN_traversal(Node* root , int root_index,vector<stacks> &all_stacks){
+void RLN_traversal(ListNode* root , int root_index,vector<stacks> &all_stacks){
     if (root == NULL){
         return;
     }
@@ -160,7 +160,7 @@ void push_all(vector<int> &ans,vector<stacks> all_stacks,int n){
         }
     }
 }
-vector<int> vertical_traversal(Node* root){
+vector<int> vertical_traversal(ListNode* root){
 
     vector<int> ans;
     if (root ->left ==  NULL && root -> right == NULL){
@@ -196,7 +196,7 @@ int main(){
     // 1 2 4 -1 -1 5 -1 -1 3 6 -1 8 -1 -1 7 -1 9 -1 -1 
     // 1 2 4 -1 5 -1 6 -1 -1 10 -1 -1 3 9 -1 -1 10 -1 -1
 
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print(root);
 

@@ -6,30 +6,30 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* npx;
+    ListNode* npx;
     Node(int data){
         this -> data = data;
         npx=NULL;
     }
 }; 
 
-Node* XOR(Node* prev,Node* forw)
+ListNode* XOR(ListNode* prev,ListNode* forw)
 {
-    return (Node*)((uintptr_t)prev ^ (uintptr_t)forw);
+    return (ListNode*)((uintptr_t)prev ^ (uintptr_t)forw);
 }
 
-Node* insert(Node* head,int data){
+ListNode* insert(ListNode* head,int data){
 
-    Node* temp = new Node(data);
+    ListNode* temp = new Node(data);
     if (head == NULL){
         head = temp;
         head->npx = XOR(NULL,NULL);
         return head;
     }
 
-    Node* prev = NULL;
-    Node* demo = head;
-    Node* x;
+    ListNode* prev = NULL;
+    ListNode* demo = head;
+    ListNode* x;
     while(true){
         x = XOR(prev,demo->npx);    
         if (x == NULL){
@@ -47,15 +47,15 @@ Node* insert(Node* head,int data){
     return head;
 }
 
-vector<int> getList(Node* head){
+vector<int> getList(ListNode* head){
     if (head == NULL){
         return {};
     }
     // you have to traveerse
     vector<int> ans;
-    Node* prev = NULL;
-    Node* x;
-    Node* demo = head;
+    ListNode* prev = NULL;
+    ListNode* x;
+    ListNode* demo = head;
     while(true){
         x = XOR(prev,demo->npx);
         ans.push_back(demo->data);
@@ -73,7 +73,7 @@ vector<int> getList(Node* head){
 }
 int main(){
 
-    Node* head = NULL;
+    ListNode* head = NULL;
     head = insert(head,10);
     head = insert(head,20);
     head = insert(head,30);

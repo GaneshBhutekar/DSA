@@ -7,8 +7,8 @@ using namespace std;
 class node{
     public:
     int data;
-    node* right;
-    node* left;
+    ListNode* right;
+    ListNode* left;
     node(int data){
         this->data = data;
         this -> right = NULL;
@@ -19,7 +19,7 @@ class node{
     
 };
 
-node* buildtree(node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter data "<<endl;
     cin>>data;
@@ -40,12 +40,12 @@ node* buildtree(node* &root){
 
 
 void print_tree(node * root){
-    queue<node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
 
     while(!q.empty()){
-        node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -90,13 +90,13 @@ int check_sum(node * root,bool &status ){
     return from_left+from_right+root->data;
 }
 
-bool sum_tree(node* root){
+bool sum_tree(ListNode* root){
     bool status = true;
     check_sum(root,status);
     return status;
 }
 int main(){
-    node* root = NULL;
+    ListNode* root = NULL;
 
     // 100 20 -1 20 -1 -1 60 10 -1 -1 10 -1 -1
 

@@ -5,8 +5,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this->data = data;
         left = NULL;
@@ -14,7 +14,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -33,12 +33,12 @@ Node* buildtree(Node* &root){
 
 }
 
-void print_tree(Node* root){
-    queue<Node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -59,7 +59,7 @@ void print_tree(Node* root){
     }
 }
 
-void solve(Node* root, vector<int> &path,int & count,int k){
+void solve(ListNode* root, vector<int> &path,int & count,int k){
     if(root == NULL){
         return;
     }
@@ -84,7 +84,7 @@ void solve(Node* root, vector<int> &path,int & count,int k){
     
 }
 
-int sumK(Node* root,int k){
+int sumK(ListNode* root,int k){
     vector<int> path;
     int count=0;
     solve(root,path,count,k);
@@ -92,7 +92,7 @@ int sumK(Node* root,int k){
     
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
     int k;

@@ -18,7 +18,7 @@ void insertatHead(Node * &head,int data){
     head=temp;
 
 }
-void insertatTail(Node*&tail,int data){
+void insertatTail(ListNode*&tail,int data){
     Node * temp=new Node(data);
     tail->next=temp;
     tail=temp;
@@ -35,13 +35,13 @@ void print(Node * head){
 
 }
 
-void sorting(Node*head){
+void sorting(ListNode*head){
     // selection sort
-    Node* wall = head;
-    Node*tag=NULL;
+    ListNode* wall = head;
+    ListNode*tag=NULL;
     while(wall != NULL){
         tag=wall;
-        Node* mover = wall->next;
+        ListNode* mover = wall->next;
         while(mover!=NULL){
             if (tag->data>mover->data){
                 tag=mover;
@@ -58,11 +58,11 @@ void sorting(Node*head){
 
 }
 
-void remove_unique(Node*head){
-    Node*temp=head;
+void remove_unique(ListNode*head){
+    ListNode*temp=head;
     while(temp->next !=NULL){
         if (temp->next->data==temp->data){
-            Node*todelete=temp->next;
+            ListNode*todelete=temp->next;
             temp->next=temp->next->next;
             todelete->next=NULL;
             delete todelete;
@@ -74,9 +74,9 @@ void remove_unique(Node*head){
     }
 }
 int main(){
-    Node*node=new Node(10);
-    Node*tail=node;
-    Node*head=node;
+    ListNode*node=new Node(10);
+    ListNode*tail=node;
+    ListNode*head=node;
     insertatTail(tail,5);
     insertatTail(tail,7);
     insertatTail(tail,3);

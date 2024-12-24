@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this->data = data;
         this->right = NULL;
@@ -16,7 +16,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node*& root){
+ListNode* buildtree(ListNode*& root){
     int data;
     cout<<"enter the element: "<<endl;
     cin>>data; 
@@ -37,16 +37,16 @@ Node* buildtree(Node*& root){
 }
 
 
-void print_tree(Node* root){
+void print_tree(ListNode* root){
     if (root == NULL){
         return;
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -66,12 +66,12 @@ void print_tree(Node* root){
     }
 }
 
-vector<int> bottom_view(Node* root){
+vector<int> bottom_view(ListNode* root){
     vector<int> ans;
     // to store
     map<int,int> store;
     // queue
-    queue<pair<int,Node*>> q;
+    queue<pair<int,ListNode*>> q;
 
     q.push({0,root});
     while(!q.empty()){
@@ -98,7 +98,7 @@ vector<int> bottom_view(Node* root){
 }
 int main(){
     // 20 8 5 -1 -1 3 10 -1 -1 -1 22 4 -1 14 -1 -1 25 -1 -1
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
     vector<int>  ans = bottom_view(root);

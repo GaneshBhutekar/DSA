@@ -6,8 +6,8 @@ using namespace std;
 class node{
     public:
     int data;
-    node* left;
-    node* right;
+    ListNode* left;
+    ListNode* right;
     node(int data){
         this->data = data;
         this ->left=NULL;
@@ -17,7 +17,7 @@ class node{
 };
 
 
-node* build_tree(node * &root){
+ListNode* build_tree(node * &root){
     cout<<"enter data"<<endl;
     int data;
     cin>>data;
@@ -40,7 +40,7 @@ node* build_tree(node * &root){
 
 
 
-void inorder_traverse(node*root){
+void inorder_traverse(ListNode*root){
     if (root == NULL){
         return;
     }
@@ -59,7 +59,7 @@ void inorder_traverse(node*root){
 }
 
 
-void preorder_traversal(node* root){
+void preorder_traversal(ListNode* root){
     if (root == NULL){
         return;
     }
@@ -76,7 +76,7 @@ void preorder_traversal(node* root){
 
 }
 
-void postorder_traversal(node* root){
+void postorder_traversal(ListNode* root){
     if (root == NULL){
         return;
     }
@@ -94,7 +94,7 @@ int main(){
 
     // 1 2 4 -1 -1 6 -1 -1 3 -1 5 -1 -1
     // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
-    node* root = NULL;
+    ListNode* root = NULL;
     build_tree(root);
 
     cout<<"inorder traversal "<<endl;

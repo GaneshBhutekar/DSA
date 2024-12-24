@@ -7,8 +7,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         right = NULL;
@@ -23,17 +23,17 @@ class Node{
 
 
 
-void print(Node* root){
+void print(ListNode* root){
     if (root == NULL){
         return;
 
     }
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -54,7 +54,7 @@ void print(Node* root){
         }
     }
 }
-Node* insert(Node* & root,int data){
+ListNode* insert(ListNode* & root,int data){
     if (root == NULL){
         root = new Node(data);
         return root;
@@ -72,7 +72,7 @@ Node* insert(Node* & root,int data){
 
 }
 
-void insertTree(Node* &root){
+void insertTree(ListNode* &root){
     int data;
     cout<<"enter the dta"<<endl;
     cin>>data;
@@ -83,7 +83,7 @@ void insertTree(Node* &root){
 
 }
 
-void inorder(Node* root,vector<Node*> &nodes){
+void inorder(ListNode* root,vector<ListNode*> &nodes){
     if (root == nullptr){
         return;
     }
@@ -94,8 +94,8 @@ void inorder(Node* root,vector<Node*> &nodes){
     inorder(root->right,nodes);
 }
 
-Node* BST_LL(Node* root){
-    vector<Node*> nodes;
+ListNode* BST_LL(ListNode* root){
+    vector<ListNode*> nodes;
     //now update this nodes vector by inorder
     inorder(root,nodes);
     int n = nodes.size();
@@ -111,7 +111,7 @@ Node* BST_LL(Node* root){
     return nodes[0];
 }
 
-void print_ll(Node* head){
+void print_ll(ListNode* head){
     while(head!= NULL){
         if (head->left){
             cout<<"nahi hua abhi bhi"<<endl;
@@ -123,10 +123,10 @@ void print_ll(Node* head){
     cout<<endl;
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     insertTree(root);
     print(root);
-    Node* head = BST_LL(root);
+    ListNode* head = BST_LL(root);
     print_ll(head);
 
     // 10 5 15 3 7 11 21 4 16 -1

@@ -7,7 +7,7 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* next;
+    ListNode* next;
     Node(int data){
         this ->data = data;
         this ->next = NULL;
@@ -20,17 +20,17 @@ class Node{
 // implementing stack now
 class Stack{
     public:
-    Node* top=NULL;
+    ListNode* top=NULL;
     
     void push(int element){
-        Node* newnode = new Node(element);
+        ListNode* newnode = new Node(element);
         newnode->next = top;
         top = newnode;
     }
 
     void pop(){
         if (top != NULL){
-        Node* temp = top;
+        ListNode* temp = top;
         top=top->next;
         temp->next=NULL;
         delete temp;

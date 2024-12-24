@@ -23,7 +23,7 @@ void insertatHead(Node * &head,int data){
     head=temp;
 
 }
-void insertatTail(Node*&tail,int data){
+void insertatTail(ListNode*&tail,int data){
     Node * temp=new Node(data);
     tail->next=temp;
     tail=temp;
@@ -39,18 +39,18 @@ void print(Node * head){
     cout<<endl;
 
 }
-Node* mergeit(Node* head1,Node*head2){
+ListNode* mergeit(ListNode* head1,ListNode*head2){
     if (head1==NULL){
         return head2;
     }
     else if (head2==NULL){
         return head1;
     }
-    Node*temp1=head1;
-    Node*temp2=head2;
-    Node*newnode=new Node(0);
-    Node*head=newnode;
-    Node*tail=newnode;
+    ListNode*temp1=head1;
+    ListNode*temp2=head2;
+    ListNode*newnode=new Node(0);
+    ListNode*head=newnode;
+    ListNode*tail=newnode;
 
     while(temp1 != NULL && temp2 != NULL){
         if (temp1->data <= temp2->data){
@@ -70,23 +70,23 @@ Node* mergeit(Node* head1,Node*head2){
         insertatTail(tail,temp2->data);
         temp2=temp2->next;
     }
-    Node*todelete=head;
+    ListNode*todelete=head;
     head=head->next;
     todelete->next=NULL;
     return head;
 
 }
 
-Node* mergeit_approach2(Node * head1,Node*head2){
+ListNode* mergeit_approach2(Node * head1,ListNode*head2){
     if (head1==NULL){
         return head2;
     }
     else if (head2==NULL){
         return head1;
     }
-    Node*temp1;
-    Node*temp2;
-    Node*final_head;
+    ListNode*temp1;
+    ListNode*temp2;
+    ListNode*final_head;
     if (head1->data >= head2->data){
         temp1=head2;
         temp2=head1;
@@ -100,7 +100,7 @@ Node* mergeit_approach2(Node * head1,Node*head2){
 
     while(temp2 !=NULL && temp1 ->next !=NULL){
         if (temp1->next->data > temp2->data){
-            Node*demo=temp2;
+            ListNode*demo=temp2;
             temp2=temp2->next;
             demo->next = temp1->next;
             temp1->next=demo;
@@ -111,32 +111,32 @@ Node* mergeit_approach2(Node * head1,Node*head2){
 
     }
     while(temp2!=NULL){
-        Node*demo=temp2;
+        ListNode*demo=temp2;
         temp2=temp2->next;
         temp1->next =demo;    
     }
     return final_head;
 }
 int main(){
-    Node*node1=new Node(1);
-    Node*head1=node1;
-    Node*tail1=node1;
+    ListNode*node1=new Node(1);
+    ListNode*head1=node1;
+    ListNode*tail1=node1;
     insertatTail(tail1,4);
     insertatTail(tail1,5);
     insertatTail(tail1,6);
     insertatTail(tail1,6);
     print(head1);
 
-    Node*node2=new Node(2);
-    Node*head2=node2;
-    Node*tail2=node2;
+    ListNode*node2=new Node(2);
+    ListNode*head2=node2;
+    ListNode*tail2=node2;
     insertatTail(tail2,3);
     insertatTail(tail2,5);
 
     print(head2);
 
     cout<<"merge it approach 1"<<endl;
-    Node* head=mergeit(head1,head2);
+    ListNode* head=mergeit(head1,head2);
     print(head);
     cout<<"merge it approach 2"<<endl;
     head=mergeit_approach2(head1,head2);

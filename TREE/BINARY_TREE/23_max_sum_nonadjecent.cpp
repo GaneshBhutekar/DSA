@@ -5,8 +5,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* left;
-    Node* right;
+    ListNode* left;
+    ListNode* right;
     Node(int data){
         this->data = data;
         left = NULL;
@@ -14,7 +14,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -33,12 +33,12 @@ Node* buildtree(Node* &root){
 
 }
 
-void print_tree(Node* root){
-    queue<Node*> q;
+void print_tree(ListNode* root){
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -59,7 +59,7 @@ void print_tree(Node* root){
     }
 }
 
-pair<int,int> solve(Node* root){
+pair<int,int> solve(ListNode* root){
     if (root == NULL){
         return {0,0};
 
@@ -78,13 +78,13 @@ pair<int,int> solve(Node* root){
     return {include,exclude};
 }
 
-int getMaxSum(Node* root){
+int getMaxSum(ListNode* root){
     pair<int,int> pr = solve(root);
     return max(pr.first,pr.second);
 
 }
 int main(){
-    Node* root = NULL;
+    ListNode* root = NULL;
     buildtree(root);
     print_tree(root);
     int ans = getMaxSum(root);

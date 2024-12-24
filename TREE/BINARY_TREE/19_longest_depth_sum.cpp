@@ -6,8 +6,8 @@ using namespace std;
 class Node{
     public:
     int data;
-    Node* right;
-    Node* left;
+    ListNode* right;
+    ListNode* left;
     Node(int data){
         this->data = data;
         this ->right = NULL;
@@ -15,7 +15,7 @@ class Node{
     }
 };
 
-Node* buildtree(Node* &root){
+ListNode* buildtree(ListNode* &root){
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -32,14 +32,14 @@ Node* buildtree(Node* &root){
     return root;
 }
 
-void level_order(Node* root){
+void level_order(ListNode* root){
     if (root == NULL) return;
 
-    queue<Node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        Node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
         if (demo == NULL){
             cout<<endl;
@@ -59,7 +59,7 @@ void level_order(Node* root){
     }
 }
 
-pair<int,int> solve(Node* root){ // this is down to up approach it reach at last and then during returning check maximum
+pair<int,int> solve(ListNode* root){ // this is down to up approach it reach at last and then during returning check maximum
     if (root == NULL){
         return {0,0}; // first count and second sum
     }
@@ -86,7 +86,7 @@ pair<int,int> solve(Node* root){ // this is down to up approach it reach at last
 
 }
 
-void top_down_solve(Node* root,int len,int &maxlen,int value,int &maxvalue){
+void top_down_solve(ListNode* root,int len,int &maxlen,int value,int &maxvalue){
     if (root == NULL){
         // here check the maxlen and maxvalue.
         if (maxlen == len){
@@ -113,7 +113,7 @@ void top_down_solve(Node* root,int len,int &maxlen,int value,int &maxvalue){
 }
 
 
-int anotherway(Node* root){
+int anotherway(ListNode* root){
     int len = 0;
     int maxlen=0;
     int value=0;

@@ -8,8 +8,8 @@ using namespace std;
 class node{
     public:
     int data;
-    node* right;
-    node* left;
+    ListNode* right;
+    ListNode* left;
     node(int data){
         this-> data = data;
         this-> right = NULL;
@@ -18,8 +18,8 @@ class node{
     }
 };
 
-void tree_build_level_order(node* &root){
-    queue<node*> q;
+void tree_build_level_order(ListNode* &root){
+    queue<ListNode*> q;
     int data;
     cout<<"enter the data"<<endl;
     cin>>data;
@@ -31,7 +31,7 @@ void tree_build_level_order(node* &root){
     q.push(root);
 
     while(!q.empty()){
-        node* demo = q.front();
+        ListNode* demo = q.front();
 
         // now push the left one
         cout<<"enter the left node for "<<demo->data <<endl;
@@ -56,15 +56,15 @@ void tree_build_level_order(node* &root){
     
 } 
 
-void level_order_traversal(node*root){
+void level_order_traversal(ListNode*root){
     if (root== NULL){
         return;
     }
-    queue<node*> q;
+    queue<ListNode*> q;
     q.push(root);
     q.push(NULL);
     while(!q.empty()){
-        node* demo = q.front();
+        ListNode* demo = q.front();
         q.pop();
 
         if (demo == NULL){
@@ -88,7 +88,7 @@ void level_order_traversal(node*root){
     }
 }
 int main(){
-    node* root = NULL;
+    ListNode* root = NULL;
     tree_build_level_order(root);
     level_order_traversal(root);
     
